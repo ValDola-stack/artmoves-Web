@@ -1,0 +1,1819 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ArtMoves — Fine Art Services, Miami · Operating on WeMove.Art</title>
+<meta name="description" content="A boutique fine art services house in Miami. Concierge collection management, museum-grade handling, crating, storage, and installation. Founded 1987. Operating on WeMove.Art.">
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,500;1,400;1,500;1,600&display=swap" rel="stylesheet">
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          ink: '#0a0a0a',
+          bone: '#fafaf7',
+          stone: '#a4a5a6',
+          turq: '#2bc9c4',
+          hair: '#e5e5e5',
+          hairdk: '#242424'
+        },
+        fontFamily: {
+          sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+          serif: ['"Playfair Display"', 'Georgia', 'serif']
+        },
+        maxWidth: { site: '1400px' }
+      }
+    }
+  }
+</script>
+<style>
+  html { scroll-behavior: smooth; }
+  body { background: #fafaf7; color: #0a0a0a; font-family: 'Inter', sans-serif; -webkit-font-smoothing: antialiased; }
+  ::selection { background: #2bc9c4; color: #0a0a0a; }
+
+  /* ── type system ── */
+  .display { font-weight: 900; letter-spacing: var(--htrack, -0.045em); line-height: 0.95; }
+  .display-tight { font-weight: 800; letter-spacing: -0.035em; line-height: 0.95; }
+  .eyebrow { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.2em; color: #0a0a0a; }
+  .eyebrow-stone { color: #a4a5a6; }
+  .meta { font-size: 11px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.18em; color: #a4a5a6; }
+  .chev { color: var(--accent, #2bc9c4); font-weight: 800; letter-spacing: -0.05em; }
+  .num { font-weight: 900; letter-spacing: -0.05em; line-height: 0.85; font-variant-numeric: tabular-nums; }
+  .serif { font-family: 'Playfair Display', serif; }
+  .serif-it { font-family: 'Playfair Display', serif; font-style: italic; font-weight: 400; letter-spacing: -0.01em; }
+  .mono { font-family: ui-monospace, 'SF Mono', 'Roboto Mono', Menlo, monospace; }
+
+  /* turquoise block highlight behind a single word (brand device) */
+  .hl { background: var(--accent, #2bc9c4); color: #0a0a0a; padding: 0.08em 0.16em; box-decoration-break: clone; -webkit-box-decoration-break: clone; }
+  .hl-underline .hl { background: transparent; color: inherit; padding: 0; box-shadow: inset 0 -0.16em 0 var(--accent, #2bc9c4); }
+  .hl-none .hl { background: transparent; color: inherit; padding: 0; }
+
+  /* eyebrow opener: chevron + rule + label */
+  .eopen { display: inline-flex; align-items: center; gap: 14px; }
+  .eopen .rule { height: 1px; width: 38px; background: var(--accent, #2bc9c4); display: inline-block; }
+
+  /* accent overrides (driven by --accent tweak) */
+  .text-turq { color: var(--accent, #2bc9c4) !important; }
+  .bg-turq { background-color: var(--accent, #2bc9c4) !important; }
+  .border-turq { border-color: var(--accent, #2bc9c4) !important; }
+  .ed-arrow { color: var(--accent, #2bc9c4); }
+
+  /* ── routing ── */
+  main[data-page] { display: none; }
+  main[data-page].active { display: block; }
+
+  a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible, [tabindex]:focus-visible {
+    outline: 2px solid #2bc9c4; outline-offset: 3px;
+  }
+
+  /* editorial rows */
+  .ed-row { transition: background-color .35s ease; }
+  .ed-row .ed-arrow { opacity: 0; transform: translateX(-8px); transition: opacity .35s ease, transform .35s ease; }
+  .ed-row:hover { background-color: rgba(43,201,196,0.06); }
+  .ed-row:hover .ed-arrow { opacity: 1; transform: translateX(0); }
+
+  .underline-link { background-image: linear-gradient(#0a0a0a,#0a0a0a); background-size: 0% 1px; background-repeat: no-repeat; background-position: 0 100%; transition: background-size .4s ease; padding-bottom: 2px; }
+  .underline-link:hover { background-size: 100% 1px; }
+  .underline-link.on-dark { background-image: linear-gradient(#fafaf7,#fafaf7); }
+
+  /* buttons */
+  .btn-turq { background: var(--accent, #2bc9c4); color: #0a0a0a; transition: filter .25s ease; white-space: nowrap; font-weight: 600; }
+  .btn-turq:hover { filter: brightness(0.92); }
+  .btn-ink { background: #0a0a0a; color: #fafaf7; transition: background-color .25s ease; white-space: nowrap; font-weight: 600; }
+  .btn-ink:hover { background: #242424; }
+  .btn-ghost { border: 1px solid #0a0a0a; color: #0a0a0a; transition: background-color .25s ease, color .25s ease; white-space: nowrap; font-weight: 600; }
+  .btn-ghost:hover { background: #0a0a0a; color: #fafaf7; }
+  .btn-ghost-dk { border: 1px solid rgba(250,250,247,0.34); color: #fafaf7; transition: border-color .25s, background-color .25s; white-space: nowrap; font-weight: 600; }
+  .btn-ghost-dk:hover { border-color: var(--accent, #2bc9c4); background: rgba(43,201,196,0.08); }
+
+  /* ── B&W photographic placeholders ── */
+  .photo { position: relative; overflow: hidden; background-color: #1a1a1a; }
+  .photo::after { content:""; position:absolute; inset:0; opacity:var(--grain, 0.10); mix-blend-mode: overlay; pointer-events:none;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
+  .photo .ph-label { position:absolute; left:0; bottom:0; padding:14px 16px; font-size:10px; font-weight:600; text-transform:uppercase; letter-spacing:0.2em; color:rgba(250,250,247,0.6); z-index:3; }
+  .photo .ph-tint { position:absolute; inset:0; background:var(--accent, #2bc9c4); mix-blend-mode:multiply; opacity:var(--tint, 0.13); z-index:2; }
+  .ph-warehouse { background: linear-gradient(180deg, rgba(0,0,0,0) 38%, rgba(0,0,0,0.72) 100%), repeating-linear-gradient(90deg, #1d1d1d 0 7%, #2a2a2a 7% 8%, #141414 8% 15%), linear-gradient(105deg, #3a3a3a 0%, #1c1c1c 55%, #0c0c0c 100%); }
+  .ph-aisle { background: linear-gradient(180deg, rgba(255,255,255,0.05), rgba(0,0,0,0.66)), conic-gradient(from 220deg at 62% 30%, #2e2e2e, #101010 40%, #353535 70%, #141414), linear-gradient(90deg,#0e0e0e,#2c2c2c); }
+  .ph-crate { background: linear-gradient(135deg, rgba(0,0,0,0) 28%, rgba(0,0,0,0.62)), repeating-linear-gradient(58deg, #2b2b2b 0 22px, #232323 22px 24px), linear-gradient(120deg,#3d3d3d,#161616); }
+  .ph-install { background: radial-gradient(120% 90% at 30% 18%, #4a4a4a 0%, #1f1f1f 46%, #0a0a0a 100%); }
+  .ph-crew { background: linear-gradient(180deg, rgba(0,0,0,0.05) 30%, rgba(0,0,0,0.6)), radial-gradient(90% 80% at 64% 28%, #4c4c4c 0%, #232323 48%, #0c0c0c 100%); }
+  .ph-portrait { background: linear-gradient(180deg, rgba(0,0,0,0) 42%, rgba(0,0,0,0.5)), radial-gradient(78% 60% at 50% 34%, #585858 0%, #2a2a2a 52%, #101010 100%); }
+  .ph-facility { background: linear-gradient(0deg, rgba(0,0,0,0.56), rgba(0,0,0,0.05)), linear-gradient(100deg, #313131 0%, #181818 60%, #0b0b0b 100%); }
+  .ph-transport { background: linear-gradient(180deg, rgba(0,0,0,0) 34%, rgba(0,0,0,0.7)), linear-gradient(75deg, #2c2c2c 0%, #161616 60%, #060606 100%), repeating-linear-gradient(0deg, rgba(255,255,255,0.02) 0 2px, transparent 2px 5px); }
+  .ph-art { background: linear-gradient(135deg, #3a3a3a, #141414); }
+
+  .hairline { border-color: #e5e5e5; }
+  .hairline-dk { border-color: #242424; }
+
+  /* nav */
+  .navlink { position: relative; font-size: 13px; font-weight: 500; color: #0a0a0a; white-space: nowrap; }
+  .navlink::after { content:""; position:absolute; left:0; right:0; bottom:-6px; height:1px; background:var(--accent, #2bc9c4); transform: scaleX(0); transform-origin:left; transition: transform .3s ease; }
+  .navlink:hover::after, .navlink.active::after { transform: scaleX(1); }
+
+  /* portal mockup chrome */
+  .chrome { background:#fff; border:1px solid #e5e5e5; }
+  .chrome-bar { background:#f3f3f1; border-bottom:1px solid #e5e5e5; }
+  .pulse-dot { position: relative; }
+  .pulse-dot::before { content:""; position:absolute; inset:-5px; border-radius:9999px; background:var(--accent, #2bc9c4); opacity:.35; animation: pulse 1.8s ease-out infinite; }
+  @keyframes pulse { 0%{transform:scale(.6);opacity:.5;} 100%{transform:scale(1.8);opacity:0;} }
+
+  /* form */
+  .qstep { display: none; }
+  .qstep.active { display: block; animation: fadein .45s ease; }
+  @keyframes fadein { from { opacity:0; transform: translateY(8px); } to { opacity:1; transform:none; } }
+  .opt-card { transition: background-color .2s ease, border-color .2s ease; }
+  .opt-card[aria-pressed="true"] { background: #fafaf7; border-color: var(--accent, #2bc9c4) !important; box-shadow: inset 0 0 0 1px var(--accent, #2bc9c4); }
+  .chip { transition: background-color .2s, color .2s, border-color .2s; }
+  .chip[aria-pressed="true"] { background: #0a0a0a; color: #fafaf7; border-color: #0a0a0a; }
+  .qinput { background:#fff; border:1px solid #e5e5e5; transition: border-color .2s; }
+  .qinput:focus { border-color:var(--accent, #2bc9c4); outline:none; }
+  .qbranch { display:none; }
+  .qbranch.active { display:block; }
+
+  /* modal */
+  .modal-wrap { transition: opacity .3s ease; }
+
+  .reveal { opacity: 0; transform: translateY(24px); transition: opacity .8s cubic-bezier(.16,1,.3,1), transform .8s cubic-bezier(.16,1,.3,1); }
+  .reveal.in { opacity: 1; transform: none; }
+  @media (prefers-reduced-motion: reduce) { .reveal { opacity:1; transform:none; transition:none; } .pulse-dot::before { animation:none; } }
+</style>
+</head>
+<body class="font-sans antialiased">
+
+<!-- ░░░░░░░░░░░░ NAV ░░░░░░░░░░░░ -->
+<header id="nav" class="sticky top-0 z-50 bg-bone/90 backdrop-blur-md border-b border-hair">
+  <div class="max-w-site mx-auto px-6 lg:px-10">
+    <div class="flex items-center justify-between h-[70px]">
+      <a href="#home" data-route="home" class="flex items-center gap-3 shrink-0" aria-label="ArtMoves home">
+        <span id="logo-slot" class="block w-[36px]"></span>
+        <span class="flex flex-col leading-none">
+          <span class="text-[19px] font-extrabold tracking-[-0.03em]">art<span class="font-black">Moves</span></span>
+          <span class="meta text-[8.5px] mt-[3px] tracking-[0.2em]">WEMOVE.ART · EST. 1987 · MIAMI</span>
+        </span>
+      </a>
+      <nav class="hidden lg:flex items-center gap-8" aria-label="Primary">
+        <a class="navlink" data-route="handling" href="#handling">Fine Art Services</a>
+        <a class="navlink" data-route="ccm" href="#ccm">Collection Management</a>
+        <a class="navlink" data-route="fairs" href="#fairs">Fairs</a>
+        <a class="navlink" data-route="about" href="#about">About</a>
+      </nav>
+      <div class="flex items-center gap-4 sm:gap-6">
+        <a class="navlink hidden md:inline" href="mailto:Hello@WeMove.Art?subject=Client%20Portal%20Access" target="_blank" rel="noopener">Client portal →</a>
+        <a data-route="quote" href="#quote" class="btn-ink text-[13px] px-5 py-2.5">Get a quote <span class="text-turq ml-1">»</span></a>
+        <button id="menuBtn" class="lg:hidden w-9 h-9 flex flex-col items-center justify-center gap-[5px]" aria-label="Open menu">
+          <span class="w-5 h-px bg-ink"></span><span class="w-5 h-px bg-ink"></span><span class="w-5 h-px bg-ink"></span>
+        </button>
+      </div>
+    </div>
+  </div>
+  <div id="mobileMenu" class="lg:hidden hidden border-t border-hair bg-bone">
+    <nav class="flex flex-col px-6 py-4" aria-label="Mobile">
+      <a class="py-3 border-b border-hair text-[15px] font-medium" data-route="handling" href="#handling">Fine Art Services</a>
+      <a class="py-3 border-b border-hair text-[15px] font-medium" data-route="ccm" href="#ccm">Collection Management</a>
+      <a class="py-3 border-b border-hair text-[15px] font-medium" data-route="fairs" href="#fairs">Fairs</a>
+      <a class="py-3 border-b border-hair text-[15px] font-medium" data-route="about" href="#about">About</a>
+      <a class="py-3 border-b border-hair text-[15px] font-medium" href="mailto:Hello@WeMove.Art?subject=Client%20Portal%20Access" target="_blank" rel="noopener">Client portal →</a>
+      <a class="py-3 text-[15px] font-semibold" data-route="quote" href="#quote">Get a quote »</a>
+    </nav>
+  </div>
+</header>
+
+<!-- ░░░░░░░░░░░░ HOME ░░░░░░░░░░░░ -->
+<main data-page="home" class="active">
+
+  <!-- HERO -->
+  <section class="bg-ink text-bone relative overflow-hidden">
+    <div class="max-w-site mx-auto px-6 lg:px-10">
+      <div class="grid lg:grid-cols-12 gap-y-12 items-stretch">
+        <div class="lg:col-span-7 pt-20 pb-14 lg:pt-28 lg:pb-32 flex flex-col justify-center">
+          <div class="eopen mb-9"><span class="chev text-[14px]">»»</span><span class="rule"></span><span class="eyebrow eyebrow-stone">Since 1987 · Museum Standards · Private Client Services</span></div>
+          <h1 class="display text-bone" style="font-size:calc(clamp(3.6rem,11.5vw,9.5rem) * var(--hero-scale,1))">We move<br><span class="hl">art</span>.</h1>
+          <p class="mt-10 text-stone text-[16px] lg:text-[19px] leading-relaxed max-w-[34rem]">A boutique fine art services house in Miami. Concierge collection management for collectors and institutions. Museum-grade handling, crating, storage, and installation for the work that matters most  built around craft, advisory depth, and the operating platform we wrote ourselves.</p>
+          <div class="mt-11 flex flex-wrap items-center gap-5">
+            <a data-route="quote" href="#quote" class="btn-turq text-[14px] px-7 py-3.5">Book a consultation <span class="ml-1">»</span></a>
+            <a href="mailto:Hello@WeMove.Art?subject=Client%20Portal%20Access" target="_blank" rel="noopener" class="text-[14px] font-medium text-bone underline-link on-dark">Client portal sign in →</a>
+          </div>
+        </div>
+        <div class="lg:col-span-5 relative">
+          <div class="absolute top-0 right-0 w-20 h-20 bg-turq z-10 hidden lg:block"></div>
+          <div class="photo ph-crew h-[300px] lg:h-full lg:absolute lg:inset-y-0 lg:left-0 lg:-right-10" role="img" aria-label="Black-and-white photograph of an ArtMoves art-handling crew preparing a work for transport">
+            <div class="ph-tint"></div>
+            <span class="ph-label">Fig. 01 — Handling crew · Miami HQ</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRUST STRIP -->
+  <section class="bg-bone border-b border-hair">
+    <div class="max-w-site mx-auto px-6 lg:px-10 py-20 lg:py-28">
+      <div class="grid grid-cols-2 lg:grid-cols-4 border-t border-hair">
+        <div class="border-b lg:border-b-0 lg:border-r border-hair px-1 lg:px-8 py-9 lg:py-2">
+          <span class="chev text-[14px] block mb-4">»»</span>
+          <div class="num text-ink" style="font-size:clamp(3.4rem,7vw,6.5rem)">1987</div>
+          <p class="meta mt-5 leading-relaxed">Founded in<br>Miami</p>
+        </div>
+        <div class="border-b lg:border-b-0 lg:border-r border-hair px-1 lg:px-8 py-9 lg:py-2">
+          <span class="chev text-[14px] block mb-4">»»</span>
+          <div class="num text-ink" style="font-size:clamp(3.4rem,7vw,6.5rem)">2009</div>
+          <p class="meta mt-5 leading-relaxed">Fairs partner<br>since</p>
+        </div>
+        <div class="border-b lg:border-b-0 lg:border-r border-hair px-1 lg:px-8 py-9 lg:py-2">
+          <span class="chev text-[14px] block mb-4">»»</span>
+          <div class="num text-ink" style="font-size: 85px">47 &amp;
+3,103</div>
+          <p class="meta mt-5 leading-relaxed">Booths &amp; cu.ft.<br>handled · fairs ʼ23</p>
+        </div>
+        <div class="px-1 lg:px-8 py-9 lg:py-2">
+          <span class="chev text-[14px] block mb-4">»»</span>
+          <div class="num text-ink" style="font-size:clamp(2.6rem,5.4vw,5rem)">ISPM-15</div>
+          <p class="meta mt-5 leading-relaxed">Crating certified<br>IPPC standards</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TWO PILLARS -->
+  <section class="bg-bone">
+    <div class="max-w-site mx-auto px-6 lg:px-10 py-24 lg:py-36">
+      <div class="grid lg:grid-cols-12 gap-8 lg:gap-12 items-end mb-16 lg:mb-20 reveal">
+        <div class="lg:col-span-7">
+          <div class="eopen mb-7"><span class="chev text-[14px]">»»</span><span class="rule"></span><span class="eyebrow">Two pillars · One standard</span></div>
+          <h2 class="display-tight text-ink" style="font-size:clamp(2.3rem,5.4vw,4.6rem)">Collection Management.<br>Fine Art Handling.</h2>
+        </div>
+        <div class="lg:col-span-4 lg:col-start-9">
+          <p class="text-ink/65 text-[16px] leading-relaxed">Two flagship lines of work, one operating standard. We lead with the advisory, cataloguing, condition, curatorial planning, legacy strategy and execute the physical work at museum-grade specification. Everything is documented, photographed, and chain-of-custody-tracked in our own platform from the moment we accept an engagement.</p>
+        </div>
+      </div>
+
+      <div class="grid lg:grid-cols-2 border-t border-hair">
+        <!-- pillar 01 -->
+        <a data-route="ccm" href="#ccm" class="ed-row group block border-b lg:border-b-0 lg:border-r border-hair px-2 lg:px-10 py-12 lg:py-14">
+          <div class="num text-turq text-[3.4rem] lg:text-[4.6rem] leading-none mb-7">01</div>
+          <h3 class="text-[26px] lg:text-[32px] font-extrabold tracking-[-0.025em] mb-4">Concierge Collection Management</h3>
+          <p class="text-ink/65 text-[16px] leading-relaxed max-w-[34rem] mb-8">The advisory layer. A credentialed team for cataloguing, monitoring, and planning across the life of a collection. Three service tiers, plus gallery and public-art practices.</p>
+          <ul class="flex flex-wrap gap-x-6 gap-y-2 mb-8 text-[13px] font-medium text-ink/80">
+            <li>Foundation Tier</li><li class="text-stone">·</li><li>Signature Tier</li><li class="text-stone">·</li><li>Legacy Tier</li><li class="text-stone">·</li><li>Gallery Integration</li><li class="text-stone">·</li><li>Public Art</li>
+          </ul>
+          <span class="inline-flex items-center gap-2 text-[14px] font-semibold text-ink">See collection management <span class="ed-arrow text-turq">→</span></span>
+        </a>
+        <!-- pillar 02 -->
+        <a data-route="handling" href="#handling" class="ed-row group block px-2 lg:px-10 py-12 lg:py-14">
+          <div class="num text-turq text-[3.4rem] lg:text-[4.6rem] leading-none mb-7">02</div>
+          <h3 class="text-[26px] lg:text-[32px] font-extrabold tracking-[-0.025em] mb-4">Fine Art Handling Services</h3>
+          <p class="text-ink/65 text-[16px] leading-relaxed max-w-[34rem] mb-8">The operational backbone. Transport, crating, installation, and storage at museum specification, delivered through a vetted bench of trained handlers and trusted partners, Miami-anchored and partner-extended.</p>
+          <ul class="flex flex-wrap gap-x-6 gap-y-2 mb-8 text-[13px] font-medium text-ink/80">
+            <li>Custom Crating</li><li class="text-stone">·</li><li>Art Installation </li><li class="text-stone">·</li><li>Climate Storage</li><li class="text-stone">·</li><li>Transport</li>
+          </ul>
+          <span class="inline-flex items-center gap-2 text-[14px] font-semibold text-ink">See fine art handling <span class="ed-arrow text-turq">→</span></span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONCIERGE TIER PREVIEW (dark) -->
+  <section class="bg-ink text-bone">
+    <div class="max-w-site mx-auto px-6 lg:px-10 py-24 lg:py-36">
+      <div class="mb-16 lg:mb-20 reveal">
+        <div class="eopen mb-7"><span class="chev text-[14px]">»»</span><span class="rule"></span><span class="eyebrow eyebrow-stone">Concierge collection management</span></div>
+        <h2 class="display-tight text-bone max-w-[20ch]" style="font-size:clamp(2.1rem,4.6vw,3.8rem)">Three tiers. One philosophy.</h2>
+      </div>
+      <div class="grid md:grid-cols-3 gap-px bg-hairdk border border-hairdk">
+        <!-- Foundation -->
+        <div class="bg-ink p-8 lg:p-10 flex flex-col">
+          <p class="eyebrow eyebrow-stone mb-5">Foundation</p>
+          <p class="serif-it text-[20px] text-bone/90 leading-snug mb-7">For early-stage collectors and families organizing inherited collections.</p>
+          <ul class="space-y-3 text-[14px] text-bone/75 mb-8 flex-1">
+            <li class="flex gap-3"><span class="text-turq">»</span> Professional inventory &amp; barcoding</li>
+            <li class="flex gap-3"><span class="text-turq">»</span> Initial condition assessments with photo documentation</li>
+            <li class="flex gap-3"><span class="text-turq">»</span> Annual report summarizing collection health</li>
+          </ul>
+          <a data-route="ccm" href="#ccm" class="text-[13px] font-semibold text-bone underline-link on-dark self-start">Inside Foundation »</a>
+        </div>
+        <!-- Signature (highlighted) -->
+        <div class="bg-ink p-8 lg:p-10 flex flex-col relative">
+          <div class="absolute top-0 right-0 w-14 h-14 bg-turq"></div>
+          <p class="eyebrow mb-5" style="color:var(--accent,#2bc9c4)">Signature</p>
+          <p class="serif-it text-[20px] text-bone leading-snug mb-7">For mid-size or growing collections with significant financial and cultural value.</p>
+          <ul class="space-y-3 text-[14px] text-bone/80 mb-8 flex-1">
+            <li class="flex gap-3"><span class="text-turq">»</span> Quarterly condition monitoring &amp; movement verification</li>
+            <li class="flex gap-3"><span class="text-turq">»</span> Real-time alerts for movement, absence, or environmental risk</li>
+            <li class="flex gap-3"><span class="text-turq">»</span> Unlimited strategic consulting sessions</li>
+          </ul>
+          <a data-route="ccm" href="#ccm" class="text-[13px] font-semibold text-bone underline-link on-dark self-start">Inside Signature »</a>
+        </div>
+        <!-- Legacy -->
+        <div class="bg-ink p-8 lg:p-10 flex flex-col">
+          <p class="eyebrow eyebrow-stone mb-5">Legacy</p>
+          <p class="serif-it text-[20px] text-bone/90 leading-snug mb-7">For high-value, generational, or institutional collections.</p>
+          <ul class="space-y-3 text-[14px] text-bone/75 mb-8 flex-1">
+            <li class="flex gap-3"><span class="text-turq">»</span> Multi-site monitoring with environmental sensors</li>
+            <li class="flex gap-3"><span class="text-turq">»</span> Annual scientific imaging cycle (UV/IR/X-ray as needed)</li>
+            <li class="flex gap-3"><span class="text-turq">»</span> Strategic legacy planning with trustees &amp; advisors</li>
+          </ul>
+          <a data-route="ccm" href="#ccm" class="text-[13px] font-semibold text-bone underline-link on-dark self-start">Inside Legacy »</a>
+        </div>
+      </div>
+      <div class="mt-12">
+        <a data-route="ccm" href="#ccm" class="inline-flex items-center gap-2 text-[14px] font-semibold text-bone underline-link on-dark">See all collection management services <span class="text-turq">»</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAIRS PROOF -->
+  <section class="bg-bone">
+    <div class="max-w-site mx-auto px-6 lg:px-10 py-24 lg:py-36">
+      <div class="grid lg:grid-cols-12 gap-10 lg:gap-12 items-start reveal">
+        <div class="lg:col-span-7">
+          <div class="eopen mb-7"><span class="chev text-[14px]">»»</span><span class="rule"></span><span class="eyebrow">Fairs · Serviced since 2009</span></div>
+          <h2 class="display-tight text-ink" style="font-size:clamp(2.1rem,5vw,4rem); height: 110px"><span class="hl" style="padding: 0px 10px 1px">47</span> booths. 3,103 cu.ft.<br>One season.</h2>
+        </div>
+        <div class="lg:col-span-5">
+          <p class="text-ink/65 text-[16px] leading-relaxed">ArtMoves has serviced major art fairs on Miami's calendar since 2009. We pack the work, transport it, install the booths, manage transit storage, and break down the show — for galleries that need a Miami partner they can trust on the calendar's biggest week.</p>
+          <a data-route="fairs" href="#fairs" class="inline-flex items-center gap-2 mt-7 text-[14px] font-semibold text-ink underline-link">See our fairs practice <span class="text-turq">»</span></a>
+        </div>
+      </div>
+      <div class="mt-16 lg:mt-20 pt-8 border-t border-hair">
+        <p class="text-stone text-[12px] lg:text-[13px] font-medium uppercase tracking-[0.16em] leading-loose" style="word-spacing:0.1em">
+          Art Basel Miami Beach <span class="text-turq mx-1">·</span> Untitled <span class="text-turq mx-1">·</span> Scope <span class="text-turq mx-1">·</span> Design Miami <span class="text-turq mx-1">·</span> Art Miami <span class="text-turq mx-1">·</span> Context <span class="text-turq mx-1">·</span> Aqua <span class="text-turq mx-1">·</span> NADA <span class="text-turq mx-1">·</span> Art Wynwood <span class="text-turq mx-1">·</span> Palm Beach Art Fair
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- WeMove.Art OS -->
+  <section class="bg-ink text-bone">
+    <div class="max-w-site mx-auto px-6 lg:px-10 py-24 lg:py-36">
+      <div class="grid lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+        <div class="lg:col-span-5 reveal">
+          <div class="eopen mb-7"><span class="chev text-[14px]">»»</span><span class="rule"></span><span class="eyebrow eyebrow-stone">Operating on WeMove.Art</span></div>
+          <h2 class="display-tight text-bone mb-7" style="font-size:clamp(2rem,4.2vw,3.4rem)">The art moves.<br>The transparency stays.</h2>
+          <p class="text-stone text-[16px] leading-relaxed mb-9 max-w-[34rem]">We built WeMove.Art because fine art logistics traditionally runs on email and PDFs. Every engagement we accept — whether a Miami install or a multi-leg move executed with trusted partners — is documented from intake to sign-off. Clients see what we see.</p>
+          <ul class="space-y-4 mb-10">
+            <li class="flex gap-4 text-[15px] text-bone/85"><span class="text-turq font-bold">»</span> Live GPS &amp; chain of custody on every leg</li>
+            <li class="flex gap-4 text-[15px] text-bone/85"><span class="text-turq font-bold">»</span> Condition reports with timestamped photo evidence</li>
+            <li class="flex gap-4 text-[15px] text-bone/85"><span class="text-turq font-bold">»</span> Storage inventory with rack-level lookup</li>
+            <li class="flex gap-4 text-[15px] text-bone/85"><span class="text-turq font-bold">»</span> Invoices, COIs and COAs in one place</li>
+          </ul>
+          <a href="mailto:Hello@WeMove.Art?subject=Client%20Portal%20Access" target="_blank" rel="noopener" class="btn-turq text-[14px] px-7 py-3.5 inline-block">Go to client portal <span class="ml-1">»</span></a>
+        </div>
+        <div class="lg:col-span-7 reveal">
+          <!-- shipment tracking mockup -->
+          <div class="chrome shadow-2xl">
+            <div class="chrome-bar flex items-center gap-2 px-4 py-3">
+              <span class="flex gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-stone/50"></span><span class="w-2.5 h-2.5 rounded-full bg-stone/50"></span><span class="w-2.5 h-2.5 rounded-full bg-stone/50"></span></span>
+              <span class="mono text-[11px] text-ink/55 ml-2 truncate">wemove.art/portal/shipment/WM-2026-0142</span>
+            </div>
+            <div class="p-6 lg:p-8 text-ink">
+              <div class="flex items-start justify-between mb-6">
+                <div>
+                  <p class="meta mb-1.5">Shipment</p>
+                  <p class="text-[18px] font-bold tracking-[-0.01em]">Phillips → Pérez Art Museum</p>
+                </div>
+                <span class="text-[11px] font-semibold uppercase tracking-[0.12em] bg-turq text-ink px-3 py-1.5">In transit</span>
+              </div>
+              <!-- timeline -->
+              <div class="space-y-0">
+                <div class="grid grid-cols-[20px_1fr] gap-4">
+                  <div class="flex flex-col items-center"><span class="w-3 h-3 rounded-full bg-ink"></span><span class="w-px flex-1 bg-ink/30 my-1"></span></div>
+                  <div class="pb-5"><p class="text-[14px] font-semibold">Crated · ArtMoves Miami</p><p class="text-[12px] text-stone mono">Mar 14 · 09:20 · condition report ✓</p></div>
+                </div>
+                <div class="grid grid-cols-[20px_1fr] gap-4">
+                  <div class="flex flex-col items-center"><span class="w-3 h-3 rounded-full bg-ink"></span><span class="w-px flex-1 bg-ink/30 my-1"></span></div>
+                  <div class="pb-5"><p class="text-[14px] font-semibold">Picked up · Vetted Partner</p><p class="text-[12px] text-stone mono">Mar 14 · 13:05 · photo evidence ✓</p></div>
+                </div>
+                <div class="grid grid-cols-[20px_1fr] gap-4">
+                  <div class="flex flex-col items-center"><span class="w-3 h-3 rounded-full bg-ink"></span><span class="w-px flex-1 bg-turq my-1"></span></div>
+                  <div class="pb-5"><p class="text-[14px] font-semibold">In transit · Carrier</p><p class="text-[12px] text-stone mono">I-95 N · ETA today 18:00</p></div>
+                </div>
+                <div class="grid grid-cols-[20px_1fr] gap-4">
+                  <div class="flex flex-col items-center"><span class="w-3 h-3 rounded-full bg-turq pulse-dot"></span><span class="w-px flex-1 bg-ink/15 my-1"></span></div>
+                  <div class="pb-5"><p class="text-[14px] font-semibold text-ink/55">Arrival &amp; condition check</p><p class="text-[12px] text-stone mono">Pending</p></div>
+                </div>
+                <div class="grid grid-cols-[20px_1fr] gap-4">
+                  <div class="flex flex-col items-center"><span class="w-3 h-3 rounded-full border border-ink/30"></span></div>
+                  <div><p class="text-[14px] font-semibold text-ink/40">Installed &amp; signed off</p><p class="text-[12px] text-stone mono">Pending</p></div>
+                </div>
+              </div>
+              <!-- metadata -->
+              <div class="grid grid-cols-3 gap-3 mt-7 pt-6 border-t border-hair">
+                <div><p class="num text-[1.6rem]">3</p><p class="meta mt-1">Crates</p></div>
+                <div><p class="num text-[1.6rem]">2</p><p class="meta mt-1">Person crew</p></div>
+                <div class="flex flex-col justify-center"><span class="text-[11px] font-semibold text-ink/70 flex items-center gap-1.5"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#2bc9c4" stroke-width="3"><path d="M4 12.5l5 5L20 6.5"/></svg> Condition report</span><span class="meta mt-1">Signed</span></div>
+              </div>
+              <div class="mt-6 photo ph-aisle h-20 w-full" role="img" aria-label="Inline route map placeholder"><div class="ph-tint"></div><span class="mono text-[10px] text-bone/55 absolute top-2 left-3">MAP · Miami → Downtown</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CLIENT PORTAL PREVIEW -->
+  <section class="bg-bone border-t border-hair">
+    <div class="max-w-site mx-auto px-6 lg:px-10 py-24 lg:py-36">
+      <div class="grid lg:grid-cols-12 gap-8 items-end mb-14 lg:mb-20 reveal">
+        <div class="lg:col-span-7">
+          <div class="eopen mb-7"><span class="chev text-[14px]">»»</span><span class="rule"></span><span class="eyebrow">Client portal · wemove.art/portal</span></div>
+          <h2 class="display-tight text-ink" style="font-size:clamp(2.1rem,5vw,4rem)">What you see, the<br>moment you sign in.</h2>
+        </div>
+        <div class="lg:col-span-4 lg:col-start-9">
+          <p class="text-ink/65 text-[16px] leading-relaxed">Every ArtMoves client gets a portal. Live shipments. Storage inventory at the rack level. Condition reports. Invoices and COIs. Everything that used to live in a thread of emails — in one tab.</p>
+        </div>
+      </div>
+
+      <div class="grid lg:grid-cols-3 gap-6">
+        <!-- Mockup 1: Dashboard -->
+        <div class="chrome reveal">
+          <div class="chrome-bar flex items-center gap-2 px-4 py-2.5">
+            <span class="w-2 h-2 rounded-full bg-stone/50"></span>
+            <span class="mono text-[10px] text-ink/55 truncate">wemove.art/portal · Jane Collector</span>
+          </div>
+          <div class="p-5">
+            <p class="meta mb-4">Dashboard</p>
+            <div class="space-y-2.5">
+              <div class="border border-hair p-3.5">
+                <div class="flex items-center justify-between mb-2"><span class="text-[12px] font-semibold">In transit</span><span class="text-[10px] mono text-turq">1 active</span></div>
+                <div class="flex gap-1"><span class="h-1 flex-1 bg-ink"></span><span class="h-1 flex-1 bg-ink"></span><span class="h-1 flex-1 bg-turq"></span><span class="h-1 flex-1 bg-hair"></span><span class="h-1 flex-1 bg-hair"></span></div>
+              </div>
+              <div class="border border-hair p-3.5">
+                <div class="flex items-center justify-between mb-1"><span class="text-[12px] font-semibold">In storage</span><span class="num text-[1.1rem]">124</span></div>
+                <p class="text-[11px] text-stone mono">$12.4M insured · last check 14d ago</p>
+              </div>
+              <div class="border border-hair p-3.5">
+                <div class="flex items-center justify-between mb-2"><span class="text-[12px] font-semibold">Outstanding</span><span class="text-[12px] font-semibold mono">$14,200</span></div>
+                <button class="w-full bg-ink text-bone text-[11px] font-semibold py-2">Pay 2 invoices</button>
+              </div>
+            </div>
+            <p class="meta mt-5 mb-2.5">Recent activity</p>
+            <ul class="space-y-2 text-[11px] text-ink/70">
+              <li class="flex gap-2"><span class="text-turq">·</span> Shipment WM-0142 updated</li>
+              <li class="flex gap-2"><span class="text-turq">·</span> Condition report uploaded</li>
+              <li class="flex gap-2"><span class="text-turq">·</span> Invoice #318 paid</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Mockup 2: Shipment detail -->
+        <div class="chrome reveal">
+          <div class="chrome-bar flex items-center gap-2 px-4 py-2.5">
+            <span class="w-2 h-2 rounded-full bg-stone/50"></span>
+            <span class="mono text-[10px] text-ink/55 truncate">/shipment/WM-2026-0142</span>
+          </div>
+          <div class="p-5">
+            <div class="flex items-start justify-between mb-4">
+              <div><p class="meta mb-1">Shipment</p><p class="text-[14px] font-bold leading-tight">Phillips →<br>Pérez Art Museum</p></div>
+              <span class="text-[9px] font-semibold uppercase tracking-[0.1em] bg-turq text-ink px-2 py-1 whitespace-nowrap">In transit</span>
+            </div>
+            <div class="space-y-0 mb-4">
+              <div class="grid grid-cols-[14px_1fr] gap-3"><div class="flex flex-col items-center"><span class="w-2.5 h-2.5 rounded-full bg-ink"></span><span class="w-px flex-1 bg-ink/25 my-0.5"></span></div><div class="pb-3"><p class="text-[11px] font-semibold">Crated · ArtMoves Miami</p><p class="text-[10px] text-stone mono">photo ✓</p></div></div>
+              <div class="grid grid-cols-[14px_1fr] gap-3"><div class="flex flex-col items-center"><span class="w-2.5 h-2.5 rounded-full bg-ink"></span><span class="w-px flex-1 bg-ink/25 my-0.5"></span></div><div class="pb-3"><p class="text-[11px] font-semibold">Picked up · Partner</p><p class="text-[10px] text-stone mono">photo ✓</p></div></div>
+              <div class="grid grid-cols-[14px_1fr] gap-3"><div class="flex flex-col items-center"><span class="w-2.5 h-2.5 rounded-full bg-turq pulse-dot"></span><span class="w-px flex-1 bg-ink/15 my-0.5"></span></div><div class="pb-3"><p class="text-[11px] font-semibold">In transit · Carrier</p><p class="text-[10px] text-stone mono">ETA 18:00</p></div></div>
+              <div class="grid grid-cols-[14px_1fr] gap-3"><div class="flex flex-col items-center"><span class="w-2.5 h-2.5 rounded-full border border-ink/30"></span></div><div><p class="text-[11px] font-semibold text-ink/45">Installed</p></div></div>
+            </div>
+            <div class="border-t border-hair pt-3 space-y-1.5 text-[11px]">
+              <div class="flex justify-between"><span class="text-stone">Crates</span><span class="font-semibold">3</span></div>
+              <div class="flex justify-between"><span class="text-stone">Condition report</span><a href="#" onclick="return false" class="text-turq font-semibold">Download ↓</a></div>
+            </div>
+            <button class="w-full border border-ink text-ink text-[11px] font-semibold py-2 mt-3">Contact crew lead</button>
+          </div>
+        </div>
+
+        <!-- Mockup 3: Storage inventory -->
+        <div class="chrome reveal">
+          <div class="chrome-bar flex items-center gap-2 px-4 py-2.5">
+            <span class="w-2 h-2 rounded-full bg-stone/50"></span>
+            <span class="mono text-[10px] text-ink/55 truncate">/storage</span>
+          </div>
+          <div class="p-5">
+            <div class="flex items-center gap-2 border border-hair px-3 py-2 mb-3">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#a4a5a6" stroke-width="2.5"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4-4"/></svg>
+              <span class="text-[11px] text-stone">Search inventory</span>
+            </div>
+            <div class="flex flex-wrap gap-1.5 mb-4">
+              <span class="text-[9px] font-semibold px-2 py-1 bg-ink text-bone">All</span>
+              <span class="text-[9px] font-semibold px-2 py-1 border border-hair text-ink/70">Paintings</span>
+              <span class="text-[9px] font-semibold px-2 py-1 border border-hair text-ink/70">Sculpture</span>
+              <span class="text-[9px] font-semibold px-2 py-1 border border-hair text-ink/70">On loan</span>
+            </div>
+            <div class="grid grid-cols-2 gap-2.5 mb-4">
+              <div><div class="photo ph-art aspect-[4/5]"><div class="ph-tint"></div></div><p class="text-[10px] font-semibold mt-1.5 leading-tight">Untitled, 2018</p><p class="text-[9px] text-stone mono">B-12-04 · <span class="text-turq">In storage</span></p></div>
+              <div><div class="photo ph-art aspect-[4/5]"><div class="ph-tint"></div></div><p class="text-[10px] font-semibold mt-1.5 leading-tight">Composition</p><p class="text-[9px] text-stone mono">A-04-11 · On view</p></div>
+              <div><div class="photo ph-art aspect-[4/5]"><div class="ph-tint"></div></div><p class="text-[10px] font-semibold mt-1.5 leading-tight">Figure Study</p><p class="text-[9px] text-stone mono">C-08-02 · On loan</p></div>
+              <div><div class="photo ph-art aspect-[4/5]"><div class="ph-tint"></div></div><p class="text-[10px] font-semibold mt-1.5 leading-tight">Seascape</p><p class="text-[9px] text-stone mono">B-12-07 · In storage</p></div>
+            </div>
+            <button class="w-full bg-ink text-bone text-[11px] font-semibold py-2">Request retrieval</button>
+          </div>
+        </div>
+      </div>
+      <div class="mt-12"><a href="mailto:Hello@WeMove.Art?subject=Client%20Portal%20Access" target="_blank" rel="noopener" class="inline-flex items-center gap-2 text-[14px] font-semibold text-ink underline-link">Go to client portal <span class="text-turq">»</span></a></div>
+    </div>
+  </section>
+
+  <!-- 2023 IN NUMBERS (editorial) -->
+  <section class="bg-ink text-bone">
+    <div class="max-w-site mx-auto px-6 lg:px-10 py-24 lg:py-36">
+      <div class="eopen mb-8 reveal"><span class="chev text-[14px]">»»</span><span class="rule"></span><span class="eyebrow eyebrow-stone">2023 in numbers</span></div>
+      <h2 class="display-tight text-bone mb-16 lg:mb-20 max-w-[18ch] reveal" style="font-size:clamp(2rem,4.4vw,3.6rem)">What a fair season looks like with <span class="hl">ArtMoves</span>.</h2>
+      <div class="grid md:grid-cols-3 gap-12 lg:gap-8 border-t border-hairdk pt-14 reveal">
+        <div>
+          <div class="serif-it text-turq leading-none" style="font-size:clamp(4rem,9vw,7rem)">47</div>
+          <p class="meta mt-4">Booths serviced</p>
+        </div>
+        <div>
+          <div class="serif-it text-turq leading-none" style="font-size:clamp(4rem,9vw,7rem)">3,103</div>
+          <p class="meta mt-4">Cu.ft. of art stored</p>
+        </div>
+        <div>
+          <div class="serif-it text-turq leading-none" style="font-size:clamp(4rem,9vw,7rem)">10</div>
+          <p class="meta mt-4">Miami fairs covered</p>
+        </div>
+      </div>
+      <div class="grid lg:grid-cols-12 mt-14 reveal">
+        <p class="lg:col-span-8 text-stone text-[16px] leading-relaxed">Art Basel Miami Beach. Untitled. Scope. Design Miami. Art Miami. Context. Aqua. NADA. Art Wynwood. Palm Beach. We pack the work, transport it, install the booths, manage transit storage, and break down the show — for galleries that need a Miami partner they can trust on the calendar's biggest week.</p>
+        <div class="lg:col-span-4 lg:text-right mt-7 lg:mt-0 self-end"><a data-route="fairs" href="#fairs" class="inline-flex items-center gap-2 text-[14px] font-semibold text-bone underline-link on-dark">See our fairs practice <span class="text-turq">»</span></a></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PARTNER PROGRAM -->
+  <section class="bg-ink text-bone relative overflow-hidden">
+    <div class="absolute top-0 right-0 w-24 h-24 lg:w-40 lg:h-40 bg-turq"></div>
+    <div class="max-w-site mx-auto px-6 lg:px-10 py-24 lg:py-36 relative">
+      <div class="grid lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+        <div class="lg:col-span-6 reveal">
+          <div class="eopen mb-7"><span class="chev text-[14px]">»»</span><span class="rule"></span><span class="eyebrow eyebrow-stone">For the industry · WeMove.Art Partner Program</span></div>
+          <h2 class="display-tight text-bone mb-7" style="font-size:clamp(2rem,4.4vw,3.5rem)">Run your operation on the platform we built for ours.</h2>
+          <p class="text-stone text-[16px] leading-relaxed max-w-[36rem]">The technology that powers ArtMoves is now available to independent art handlers, galleries running their own logistics, museums, and freelance art techs. Your brand. Your customer book. Your data. The platform runs underneath — live as a partner subdomain at <span class="mono text-bone">{yourbrand}.wemove.art</span>.</p>
+        </div>
+        <div class="lg:col-span-5 lg:col-start-8 reveal">
+          <ul class="space-y-6 mb-9">
+            <li><p class="text-[15px] font-semibold text-bone flex gap-3"><span class="text-turq">»</span> Your brand on every screen</p><p class="text-stone text-[14px] mt-1 pl-7">White-label theming, your customer-facing URL.</p></li>
+            <li><p class="text-[15px] font-semibold text-bone flex gap-3"><span class="text-turq">»</span> Day-one operations</p><p class="text-stone text-[14px] mt-1 pl-7">Quote, schedule, track, invoice. No procurement cycle.</p></li>
+            <li><p class="text-[15px] font-semibold text-bone flex gap-3"><span class="text-turq">»</span> Network access</p><p class="text-stone text-[14px] mt-1 pl-7">Optional connection to ArtMoves overflow work and partner referrals.</p></li>
+          </ul>
+          <button data-partner class="btn-turq text-[14px] px-7 py-3.5 inline-block">Book a partner demo <span class="ml-1">»</span></button>
+          <p class="text-stone text-[13px] mt-4">Already a partner? <a class="underline-link on-dark text-bone/80" href="https://app.wemove.art" target="_blank" rel="noopener">Sign in at app.wemove.art →</a></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FINAL CTA -->
+  <section class="bg-ink text-bone border-t border-hairdk">
+    <div class="max-w-site mx-auto px-6 lg:px-10 py-24 lg:py-32 text-center">
+      <h2 class="display text-bone mb-10" style="font-size:clamp(2.4rem,6vw,5rem)">Something to move?<br>Something to plan? <span class="serif-it font-normal text-turq" style="letter-spacing:-0.02em">Let's talk.</span></h2>
+      <div class="flex flex-wrap items-center justify-center gap-5">
+        <a data-route="quote" href="#quote" class="btn-turq text-[14px] px-8 py-4 inline-block">Book a consultation <span class="ml-1">»</span></a>
+        <a href="tel:+13055010002" class="text-[15px] font-medium text-bone underline-link on-dark">Call +1 305 501 0002 →</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ░░░░░░░░░░░░ FINE ART HANDLING ░░░░░░░░░░░░ -->
+<main data-page="handling">
+
+  <!-- HERO -->
+  <section class="bg-ink text-bone">
+    <div class="max-w-site mx-auto px-6 lg:px-10 pt-20 pb-20 lg:pt-28 lg:pb-28">
+      <div class="eopen mb-9"><span class="chev text-[14px]">»»</span><span class="rule"></span><span class="eyebrow eyebrow-stone">Fine Art Handling Services</span></div>
+      <h1 class="display text-bone max-w-[16ch]" style="font-size:clamp(2.8rem,8vw,7rem)">Museum-grade <span class="hl">operations</span>.</h1>
+      <p class="mt-10 text-stone text-[16px] lg:text-[19px] leading-relaxed max-w-[44rem]">Four surfaces. One operator. Every shipment runs through the same crews, the same crating facility, the same operating system — whether it's a single canvas across Miami or a museum-grade collection across continents.</p>
+      <div class="mt-10 flex flex-wrap gap-x-8 gap-y-3 text-[13px] font-medium text-bone/70">
+        <span>01 — Global Transport</span><span class="text-turq">·</span><span>02 — Custom Crating</span><span class="text-turq">·</span><span>03 — Installation &amp; Removal</span><span class="text-turq">·</span><span>04 — Storage Solutions</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 01 GLOBAL TRANSPORT -->
+  <section class="bg-bone border-b border-hair">
+    <div class="max-w-site mx-auto px-6 lg:px-10 py-24 lg:py-32">
+      <div class="grid lg:grid-cols-12 gap-10 lg:gap-14">
+        <div class="lg:col-span-7">
+          <div class="num text-turq leading-none mb-8" style="font-size:clamp(4rem,9vw,8rem)">01</div>
+          <h2 class="display-tight text-ink mb-7" style="font-size:clamp(2rem,4.4vw,3.4rem)">Global Transport</h2>
+          <div class="space-y-5 text-ink/70 text-[16px] leading-relaxed max-w-[40rem]">
+            <p>We are Miami-anchored and partner-extended. Local moves run on our own crews and vehicles; longer legs are executed through a vetted network of art-handling services we've worked with for years. Every shipment is assessed individually — air, road, sea, consolidated or exclusive-use — and routed for the right balance of speed, climate, and cost.</p>
+            <p>One coordinator owns the move end to end. You never hand off to a stranger, and you never lose visibility: each leg is logged in WeMove.Art with operator attribution, so you can see exactly who has the work, where, and when.</p>
+          </div>
+          <div class="grid sm:grid-cols-3 gap-px bg-hair border border-hair mt-10">
+            <div class="bg-bone p-5"><p class="meta mb-2">Modes</p><p class="text-[14px] font-semibold text-ink">Air · Road · Sea</p></div>
+            <div class="bg-bone p-5"><p class="meta mb-2">Service levels</p><p class="text-[14px] font-semibold text-ink">Consolidated · Dedicated · Exclusive</p></div>
+            <div class="bg-bone p-5"><p class="meta mb-2">Custody</p><p class="text-[14px] font-semibold text-ink">Logged at every leg</p></div>
+          </div>
+        </div>
+        <div class="lg:col-span-5">
+          <div class="photo ph-transport h-72 lg:h-full min-h-[280px]" role="img" aria-label="Black-and-white photograph of an art transport vehicle loaded at the ArtMoves dock"><div class="ph-tint"></div><span class="ph-label">Transport · Miami dock</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 02 CUSTOM CRATING -->
+  <section class="bg-bone border-b border-hair">
+    <div class="max-w-site mx-auto px-6 lg:px-10 py-24 lg:py-32">
+      <div class="grid lg:grid-cols-12 gap-10 lg:gap-14">
+        <div class="lg:col-span-5 order-2 lg:order-1">
+          <div class="photo ph-crate h-72 lg:h-full min-h-[280px]" role="img" aria-label="Black-and-white photograph of a custom museum crate under fabrication in the woodworking shop"><div class="ph-tint"></div><span class="ph-label">Crate fabrication · In-house shop</span></div>
+        </div>
+        <div class="lg:col-span-7 order-1 lg:order-2">
+          <div class="num text-turq leading-none mb-8" style="font-size:clamp(4rem,9vw,8rem)">02</div>
+          <h2 class="display-tight text-ink mb-7" style="font-size:clamp(2rem,4.4vw,3.4rem)">Custom Crating</h2>
+          <div class="space-y-5 text-ink/70 text-[16px] leading-relaxed max-w-[40rem]">
+            <p>Our full in-house woodworking facility builds to museum-level specification — any size, any geometry, from a single panel painting to multi-piece fair build cycles. Crates are engineered around the object: cavity packing, isolation against shock and vibration, and climate buffering sized to the destination and the season.</p>
+            <p>All export crating meets <span class="font-semibold text-ink">ISPM-15</span> and <span class="font-semibold text-ink">IPPC</span> standards, so work crosses borders without a hold at customs. Designs are documented and archived, which means a recurring exhibition or a returning loan can reuse a proven crate.</p>
+          </div>
+          <div class="grid sm:grid-cols-3 gap-px bg-hair border border-hair mt-10">
+            <div class="bg-bone p-5"><p class="meta mb-2">Certification</p><p class="text-[14px] font-semibold text-ink">ISPM-15 · IPPC</p></div>
+            <div class="bg-bone p-5"><p class="meta mb-2">Facility</p><p class="text-[14px] font-semibold text-ink">In-house woodworking</p></div>
+            <div class="bg-bone p-5"><p class="meta mb-2">Range</p><p class="text-[14px] font-semibold text-ink">Any size · any geometry</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 03 INSTALLATION & REMOVAL -->
+  <section class="bg-bone border-b border-hair">
+    <div class="max-w-site mx-auto px-6 lg:px-10 py-24 lg:py-32">
+      <div class="grid lg:grid-cols-12 gap-10 lg:gap-14">
+        <div class="lg:col-span-7">
+          <div class="num text-turq leading-none mb-8" style="font-size:clamp(4rem,9vw,8rem)">03</div>
+          <h2 class="display-tight text-ink mb-7" style="font-size:clamp(2rem,4.4vw,3.4rem)">Installation &amp; Removal</h2>
+          <div class="space-y-5 text-ink/70 text-[16px] leading-relaxed max-w-[40rem]">
+            <p>Our handlers are museum-quality-trained and work white-glove on residential, commercial, and institutional sites. Every project is consultant-assessed before a crate is opened — placement, sightlines, lighting, wall construction, anchoring, and the condition of the work all reviewed on site.</p>
+            <p>We hang, mount, plinth, and rig — from a single work over a fireplace to a full gallery rotation — and we remove and re-pack with the same discipline. Condition is photographed before and after, time-stamped, and filed to the work's record.</p>
+          </div>
+          <div class="grid sm:grid-cols-3 gap-px bg-hair border border-hair mt-10">
+            <div class="bg-bone p-5"><p class="meta mb-2">Settings</p><p class="text-[14px] font-semibold text-ink">Residential · Commercial · Institutional</p></div>
+            <div class="bg-bone p-5"><p class="meta mb-2">Assessed for</p><p class="text-[14px] font-semibold text-ink">Placement · Lighting · Condition</p></div>
+            <div class="bg-bone p-5"><p class="meta mb-2">Documentation</p><p class="text-[14px] font-semibold text-ink">Before / after, time-stamped</p></div>
+          </div>
+        </div>
+        <div class="lg:col-span-5">
+          <div class="photo ph-install h-72 lg:h-full min-h-[280px]" role="img" aria-label="Black-and-white photograph of handlers installing a large work on a gallery wall"><div class="ph-tint"></div><span class="ph-label">Installation · Gallery rotation</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 04 STORAGE SOLUTIONS -->
+  <section class="bg-bone border-b border-hair">
+    <div class="max-w-site mx-auto px-6 lg:px-10 py-24 lg:py-32">
+      <div class="grid lg:grid-cols-12 gap-10 lg:gap-14">
+        <div class="lg:col-span-5 order-2 lg:order-1">
+          <div class="photo ph-aisle h-72 lg:h-full min-h-[280px]" role="img" aria-label="Black-and-white photograph of a climate-controlled fine art storage aisle at Miami HQ"><div class="ph-tint"></div><span class="ph-label">Storage aisle · Miami HQ</span></div>
+        </div>
+        <div class="lg:col-span-7 order-1 lg:order-2">
+          <div class="num text-turq leading-none mb-8" style="font-size:clamp(4rem,9vw,8rem)">04</div>
+          <h2 class="display-tight text-ink mb-7" style="font-size:clamp(2rem,4.4vw,3.4rem)">Storage Solutions</h2>
+          <div class="space-y-5 text-ink/70 text-[16px] leading-relaxed max-w-[40rem]">
+            <p>Climate-controlled, security-monitored storage at our Miami HQ, with natural-disaster planning built into the building and the protocol. Short-term transit storage through to permanent collection holding, plus partner facilities worldwide when a collection lives in more than one place.</p>
+            <p>Everything is indexed to a rack-level location in WeMove.Art, so a work can be found, pulled, and scheduled for retrieval in minutes — same-day across the Miami metro. You see your inventory, its location, and its last condition check from anywhere.</p>
+          </div>
+          <div class="grid sm:grid-cols-3 gap-px bg-hair border border-hair mt-10">
+            <div class="bg-bone p-5"><p class="meta mb-2">Environment</p><p class="text-[14px] font-semibold text-ink">Climate-controlled</p></div>
+            <div class="bg-bone p-5"><p class="meta mb-2">Security</p><p class="text-[14px] font-semibold text-ink">Monitored · disaster-planned</p></div>
+            <div class="bg-bone p-5"><p class="meta mb-2">Retrieval</p><p class="text-[14px] font-semibold text-ink">Rack-indexed · same-day Miami</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW A MOVE WORKS -->
+  <section class="bg-ink text-bone">
+    <div class="max-w-site mx-auto px-6 lg:px-10 py-24 lg:py-32">
+      <div class="eopen mb-10 reveal"><span class="chev text-[14px]">»»</span><span class="rule"></span><span class="eyebrow eyebrow-stone">How a move works</span></div>
+      <div class="grid md:grid-cols-5 border-t border-hairdk reveal">
+        <div class="border-b md:border-b-0 md:border-r border-hairdk py-8 md:px-5 md:py-6"><div class="num text-bone text-[1.8rem] mb-3">01</div><p class="text-[14px] font-semibold mb-1.5">Survey &amp; quote</p><p class="text-stone text-[13px] leading-relaxed">On-site or remote assessment. Itemized quote in two hours.</p></div>
+        <div class="border-b md:border-b-0 md:border-r border-hairdk py-8 md:px-5 md:py-6"><div class="num text-bone text-[1.8rem] mb-3">02</div><p class="text-[14px] font-semibold mb-1.5">Crate &amp; condition</p><p class="text-stone text-[13px] leading-relaxed">Custom crating; condition report photographed and filed.</p></div>
+        <div class="border-b md:border-b-0 md:border-r border-hairdk py-8 md:px-5 md:py-6"><div class="num text-bone text-[1.8rem] mb-3">03</div><p class="text-[14px] font-semibold mb-1.5">Transport</p><p class="text-stone text-[13px] leading-relaxed">Routed and tracked, with operator attribution at every leg.</p></div>
+        <div class="border-b md:border-b-0 md:border-r border-hairdk py-8 md:px-5 md:py-6"><div class="num text-bone text-[1.8rem] mb-3">04</div><p class="text-[14px] font-semibold mb-1.5">Install or store</p><p class="text-stone text-[13px] leading-relaxed">White-glove install, or rack-indexed into storage.</p></div>
+        <div class="py-8 md:px-5 md:py-6"><div class="num text-turq text-[1.8rem] mb-3">05</div><p class="text-[14px] font-semibold mb-1.5">Sign-off</p><p class="text-stone text-[13px] leading-relaxed">Final condition check, signed and archived to the record.</p></div>
+      </div>
+      <div class="mt-14"><a data-route="quote" href="#quote" class="btn-turq text-[14px] px-7 py-3.5 inline-block">Get a quote <span class="ml-1">»</span></a></div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ░░░░░░░░░░░░ COLLECTION MANAGEMENT ░░░░░░░░░░░░ -->
+<main data-page="ccm">
+
+  <!-- HERO -->
+  <section class="bg-bone border-b border-hair">
+    <div class="max-w-site mx-auto px-6 lg:px-10 pt-20 pb-20 lg:pt-28 lg:pb-28">
+      <div class="eopen mb-9"><span class="chev text-[14px]">»»</span><span class="rule"></span><span class="eyebrow">Concierge Collection Management</span></div>
+      <h1 class="serif-it text-ink leading-[0.98] mb-6" style="font-size:clamp(2.6rem,7.5vw,6.5rem)">Museum standards.<br>Private client services.</h1>
+      <p class="display-tight text-ink mb-8" style="font-size:clamp(1.4rem,3vw,2.2rem)">Three tiers. One philosophy.</p>
+      <p class="text-ink/65 text-[16px] lg:text-[18px] leading-relaxed max-w-[46rem]">Whether you're cataloguing an inherited collection or overseeing a multi-site legacy, our service tiers adapt to your needs without compromising museum standards. <span class="font-semibold text-ink">Excellence. Discretion. Insight.</span></p>
+    </div>
+  </section>
+
+  <!-- FOUNDATION -->
+  <section class="bg-bone border-b border-hair">
+    <div class="max-w-site mx-auto px-6 lg:px-10 py-24 lg:py-32">
+      <div class="grid lg:grid-cols-12 gap-10 lg:gap-14">
+        <div class="lg:col-span-4">
+          <p class="eyebrow mb-5">Tier I</p>
+          <h2 class="display-tight text-ink mb-4" style="font-size:clamp(2rem,4vw,3rem)">Foundation</h2>
+          <p class="serif-it text-ink/80 text-[19px] leading-snug mb-7">For early-stage collectors and families organizing inherited collections.</p>
+          <p class="text-ink/65 text-[15px] leading-relaxed mb-7">Best for collectors with fewer than 25 works. The focus is to organize and protect the collection's physical and documentary integrity — a clean, complete, defensible record from the start.</p>
+          <p class="serif-it text-stone text-[16px] leading-relaxed border-l-2 border-turq pl-5">"We inherited the work and the responsibility. They gave us the record we never had."</p>
+          <a data-route="quote" href="#quote" class="inline-flex items-center gap-2 mt-7 text-[14px] font-semibold text-ink underline-link">Inquire about Foundation <span class="text-turq">»</span></a>
+        </div>
+        <div class="lg:col-span-7 lg:col-start-6">
+          <ul class="grid sm:grid-cols-2 gap-x-10 gap-y-px border-t border-hair">
+            <li class="flex gap-3 text-[15px] text-ink/80 py-4 border-b border-hair"><span class="text-turq font-bold">»</span> Professional inventory and barcoding</li>
+            <li class="flex gap-3 text-[15px] text-ink/80 py-4 border-b border-hair"><span class="text-turq font-bold">»</span> Digital and printed catalogue with secure private access</li>
+            <li class="flex gap-3 text-[15px] text-ink/80 py-4 border-b border-hair"><span class="text-turq font-bold">»</span> Initial condition assessments with photo documentation</li>
+            <li class="flex gap-3 text-[15px] text-ink/80 py-4 border-b border-hair"><span class="text-turq font-bold">»</span> Discreet artwork tagging to verify presence and prevent loss</li>
+            <li class="flex gap-3 text-[15px] text-ink/80 py-4 border-b border-hair"><span class="text-turq font-bold">»</span> Guidance on framing, placement, and conservation needs</li>
+            <li class="flex gap-3 text-[15px] text-ink/80 py-4 border-b border-hair"><span class="text-turq font-bold">»</span> Annual report summarizing collection health</li>
+            <li class="flex gap-3 text-[15px] text-ink/80 py-4 border-b border-hair"><span class="text-turq font-bold">»</span> Insurance advisory and basic valuation support</li>
+            <li class="flex gap-3 text-[15px] text-ink/80 py-4 border-b border-hair"><span class="text-turq font-bold">»</span> Limited handling, transport, and installation coordination</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SIGNATURE (highlighted) -->
+  <section class="bg-bone border-b border-hair">
+    <div class="max-w-site mx-auto px-6 lg:px-10 py-24 lg:py-32">
+      <div class="border border-hair relative bg-white">
+        <div class="absolute top-0 right-0 w-16 h-16 lg:w-24 lg:h-24 bg-turq"></div>
+        <div class="grid lg:grid-cols-12 gap-10 lg:gap-14 p-8 lg:p-14">
+          <div class="lg:col-span-4">
+            <p class="eyebrow mb-5" style="color:var(--accent,#2bc9c4)">Tier II · Most chosen</p>
+            <h2 class="display-tight text-ink mb-4" style="font-size:clamp(2.2rem,4.4vw,3.4rem)">Signature</h2>
+            <p class="serif-it text-ink/80 text-[19px] leading-snug mb-7">For mid-size or growing collections with significant financial and cultural value.</p>
+            <p class="text-ink/65 text-[15px] leading-relaxed mb-7">For collectors with multiple residences or active acquisition patterns. Ongoing oversight, strategic guidance, and broader risk mitigation across the whole collection.</p>
+            <p class="serif-it text-stone text-[16px] leading-relaxed border-l-2 border-turq pl-5">"I'm acquiring across two cities. They keep the whole picture so I don't have to."</p>
+            <a data-route="quote" href="#quote" class="inline-flex items-center gap-2 mt-7 text-[14px] font-semibold text-ink underline-link">Inquire about Signature <span class="text-turq">»</span></a>
+          </div>
+          <div class="lg:col-span-7 lg:col-start-6">
+            <p class="text-[13px] font-semibold text-ink/50 uppercase tracking-[0.16em] mb-5">Everything in Foundation, plus</p>
+            <ul class="grid sm:grid-cols-2 gap-x-10 gap-y-px border-t border-hair">
+              <li class="flex gap-3 text-[15px] text-ink/80 py-4 border-b border-hair"><span class="text-turq font-bold">»</span> Quarterly condition monitoring and movement verification</li>
+              <li class="flex gap-3 text-[15px] text-ink/80 py-4 border-b border-hair"><span class="text-turq font-bold">»</span> Real-time alert setup for movement, absence, or environmental risks</li>
+              <li class="flex gap-3 text-[15px] text-ink/80 py-4 border-b border-hair"><span class="text-turq font-bold">»</span> Quarterly appraisal cycle management</li>
+              <li class="flex gap-3 text-[15px] text-ink/80 py-4 border-b border-hair"><span class="text-turq font-bold">»</span> Review and optimization of insurance coverage</li>
+              <li class="flex gap-3 text-[15px] text-ink/80 py-4 border-b border-hair"><span class="text-turq font-bold">»</span> Unlimited strategic consulting sessions per year</li>
+              <li class="flex gap-3 text-[15px] text-ink/80 py-4 border-b border-hair"><span class="text-turq font-bold">»</span> Advisory on acquisition, resale, and secondary market positioning</li>
+              <li class="flex gap-3 text-[15px] text-ink/80 py-4 border-b border-hair"><span class="text-turq font-bold">»</span> Full coordination of storage, transport, and art-handler relationships</li>
+              <li class="flex gap-3 text-[15px] text-ink/80 py-4 border-b border-hair"><span class="text-turq font-bold">»</span> Private event or exhibition planning and coordination</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LEGACY (editorial spread, dark) -->
+  <section class="bg-ink text-bone relative overflow-hidden">
+    <div class="absolute inset-y-0 right-0 w-1/3 hidden lg:block">
+      <div class="photo ph-facility h-full" role="img" aria-label="Black-and-white photograph of a museum-grade archival storage room"><div class="ph-tint"></div></div>
+    </div>
+    <div class="max-w-site mx-auto px-6 lg:px-10 py-24 lg:py-36 relative">
+      <div class="lg:max-w-[64%]">
+        <p class="eyebrow eyebrow-stone mb-5">Tier III</p>
+        <h2 class="display text-bone mb-5" style="font-size:clamp(2.6rem,6vw,5rem)">Legacy</h2>
+        <p class="serif-it text-bone/90 text-[22px] lg:text-[26px] leading-snug mb-7 max-w-[34rem]">For high-value, generational, or institutional collections.</p>
+        <p class="text-stone text-[16px] leading-relaxed max-w-[40rem] mb-12">End-to-end stewardship for collections of 75+ works or significant multi-site holdings. Legacy integrates legacy planning, scientific imaging, museum-quality documentation, and global oversight into one continuous practice.</p>
+        <div class="grid sm:grid-cols-2 gap-x-12 gap-y-8 max-w-[44rem]">
+          <div><p class="text-[15px] font-bold text-turq mb-2">Advanced oversight &amp; monitoring</p><p class="text-stone text-[14px] leading-relaxed">Multi-site monitoring, real-time location reporting, environmental sensors for humidity, temperature, and shock.</p></div>
+          <div><p class="text-[15px] font-bold text-turq mb-2">Scientific &amp; archival excellence</p><p class="text-stone text-[14px] leading-relaxed">Annual scientific imaging cycle (UV/IR/X-ray as needed); full archiving of provenance, curatorial essays, and restoration records.</p></div>
+          <div><p class="text-[15px] font-bold text-turq mb-2">Strategic legacy planning</p><p class="text-stone text-[14px] leading-relaxed">Coordination with trustees, heirs, and legal, philanthropic, and tax advisors.</p></div>
+          <div><p class="text-[15px] font-bold text-turq mb-2">Institutional &amp; cultural engagement</p><p class="text-stone text-[14px] leading-relaxed">Museum loan negotiation and donor placement support.</p></div>
+          <div><p class="text-[15px] font-bold text-turq mb-2">Priority client services</p><p class="text-stone text-[14px] leading-relaxed">VIP priority for all logistics and emergencies.</p></div>
+        </div>
+        <a data-route="quote" href="#quote" class="inline-flex items-center gap-2 mt-12 text-[14px] font-semibold text-bone underline-link on-dark">Inquire about Legacy <span class="text-turq">»</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALLERY INTEGRATION -->
+  <section class="bg-bone border-b border-hair">
+    <div class="max-w-site mx-auto px-6 lg:px-10 py-24 lg:py-32">
+      <div class="grid lg:grid-cols-12 gap-10 lg:gap-14">
+        <div class="lg:col-span-5">
+          <div class="eopen mb-7"><span class="chev text-[14px]">»»</span><span class="rule"></span><span class="eyebrow">Extension · Galleries</span></div>
+          <h2 class="display-tight text-ink mb-6" style="font-size:clamp(2rem,4.4vw,3.2rem)">Launching galleries. Amplifying presence.</h2>
+          <p class="text-ink/65 text-[16px] leading-relaxed max-w-[34rem]">We help galleries not just enter, but resonate in the U.S. market. Each gallery project is built around your brand, your artists, and your objectives — commercial, cultural, or reputational.</p>
+          <a data-route="quote" href="#quote" class="inline-flex items-center gap-2 mt-8 text-[14px] font-semibold text-ink underline-link">Talk to us about your gallery launch <span class="text-turq">»</span></a>
+        </div>
+        <div class="lg:col-span-6 lg:col-start-7">
+          <ul class="border-t border-hair">
+            <li class="flex gap-4 items-baseline text-[15px] text-ink/80 py-4 border-b border-hair"><span class="num text-turq text-[13px] w-6">01</span> Real estate scouting and lease advisory</li>
+            <li class="flex gap-4 items-baseline text-[15px] text-ink/80 py-4 border-b border-hair"><span class="num text-turq text-[13px] w-6">02</span> Exhibition layout, lighting, and signage</li>
+            <li class="flex gap-4 items-baseline text-[15px] text-ink/80 py-4 border-b border-hair"><span class="num text-turq text-[13px] w-6">03</span> Event production and press coordination</li>
+            <li class="flex gap-4 items-baseline text-[15px] text-ink/80 py-4 border-b border-hair"><span class="num text-turq text-[13px] w-6">04</span> Staffing and sales assistance</li>
+            <li class="flex gap-4 items-baseline text-[15px] text-ink/80 py-4 border-b border-hair"><span class="num text-turq text-[13px] w-6">05</span> Logistic and artwork intake management</li>
+            <li class="flex gap-4 items-baseline text-[15px] text-ink/80 py-4 border-b border-hair"><span class="num text-turq text-[13px] w-6">06</span> Discreet documentation and inventory services</li>
+            <li class="flex gap-4 items-baseline text-[15px] text-ink/80 py-4 border-b border-hair"><span class="num text-turq text-[13px] w-6">07</span> Strategy for client engagement and follow-up</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PUBLIC ART -->
+  <section class="bg-bone border-b border-hair">
+    <div class="max-w-site mx-auto px-6 lg:px-10 py-24 lg:py-32">
+      <div class="grid lg:grid-cols-12 gap-10 lg:gap-14">
+        <div class="lg:col-span-6 order-2 lg:order-1">
+          <ul class="border-t border-hair">
+            <li class="flex gap-4 items-baseline text-[15px] text-ink/80 py-4 border-b border-hair"><span class="num text-turq text-[13px] w-6">01</span> Concept curation and artist sourcing</li>
+            <li class="flex gap-4 items-baseline text-[15px] text-ink/80 py-4 border-b border-hair"><span class="num text-turq text-[13px] w-6">02</span> Community engagement and stakeholder alignment</li>
+            <li class="flex gap-4 items-baseline text-[15px] text-ink/80 py-4 border-b border-hair"><span class="num text-turq text-[13px] w-6">03</span> Commission and fabrication oversight</li>
+            <li class="flex gap-4 items-baseline text-[15px] text-ink/80 py-4 border-b border-hair"><span class="num text-turq text-[13px] w-6">04</span> Permitting and regulatory compliance</li>
+            <li class="flex gap-4 items-baseline text-[15px] text-ink/80 py-4 border-b border-hair"><span class="num text-turq text-[13px] w-6">05</span> Installation coordination</li>
+            <li class="flex gap-4 items-baseline text-[15px] text-ink/80 py-4 border-b border-hair"><span class="num text-turq text-[13px] w-6">06</span> Post-install monitoring and conservation planning</li>
+            <li class="flex gap-4 items-baseline text-[15px] text-ink/80 py-4 border-b border-hair"><span class="num text-turq text-[13px] w-6">07</span> Marketing and press support</li>
+          </ul>
+        </div>
+        <div class="lg:col-span-5 lg:col-start-8 order-1 lg:order-2">
+          <div class="eopen mb-7"><span class="chev text-[14px]">»»</span><span class="rule"></span><span class="eyebrow">Extension · Public Art &amp; Development</span></div>
+          <h2 class="serif-it text-ink mb-6 leading-[1.02]" style="font-size:clamp(2rem,4.6vw,3.4rem)">Art as architecture's soul.</h2>
+          <p class="text-ink/65 text-[16px] leading-relaxed max-w-[34rem]">We partner with real estate developers, civic entities, and architects to integrate meaningful, site-specific artwork into residential, commercial, and public spaces — from concept to commissioning to post-install conservation.</p>
+          <a data-route="quote" href="#quote" class="inline-flex items-center gap-2 mt-8 text-[14px] font-semibold text-ink underline-link">Start a public art conversation <span class="text-turq">»</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PARTNERSHIP BENEFITS -->
+  <section class="bg-bone border-b border-hair">
+    <div class="max-w-site mx-auto px-6 lg:px-10 py-24 lg:py-32">
+      <div class="eopen mb-12 reveal"><span class="chev text-[14px]">»»</span><span class="rule"></span><span class="eyebrow">Partnership benefits</span></div>
+      <div class="border-t border-hair reveal">
+        <div class="grid lg:grid-cols-12 gap-4 py-8 border-b border-hair items-baseline"><div class="lg:col-span-1 num text-turq text-[1.4rem]">01</div><h3 class="lg:col-span-4 text-[20px] font-extrabold tracking-[-0.01em]">Museum-Level Expertise</h3><p class="lg:col-span-7 text-ink/65 text-[15px] leading-relaxed">Standards drawn from auction houses and institutions, applied to private collections of every scale.</p></div>
+        <div class="grid lg:grid-cols-12 gap-4 py-8 border-b border-hair items-baseline"><div class="lg:col-span-1 num text-turq text-[1.4rem]">02</div><h3 class="lg:col-span-4 text-[20px] font-extrabold tracking-[-0.01em]">Discreet, White-Glove Service</h3><p class="lg:col-span-7 text-ink/65 text-[15px] leading-relaxed">Quiet, careful, and confidential — the way discerning collectors expect to be served.</p></div>
+        <div class="grid lg:grid-cols-12 gap-4 py-8 border-b border-hair items-baseline"><div class="lg:col-span-1 num text-turq text-[1.4rem]">03</div><h3 class="lg:col-span-4 text-[20px] font-extrabold tracking-[-0.01em]">Real-Time Awareness</h3><p class="lg:col-span-7 text-ink/65 text-[15px] leading-relaxed">Condition, location, and movement of every work, visible in WeMove.Art from anywhere.</p></div>
+        <div class="grid lg:grid-cols-12 gap-4 py-8 border-b border-hair items-baseline"><div class="lg:col-span-1 num text-turq text-[1.4rem]">04</div><h3 class="lg:col-span-4 text-[20px] font-extrabold tracking-[-0.01em]">Long-Term Vision</h3><p class="lg:col-span-7 text-ink/65 text-[15px] leading-relaxed">Planning that thinks in generations — provenance, legacy, and the people who inherit the work.</p></div>
+        <div class="grid lg:grid-cols-12 gap-4 py-8 border-b border-hair items-baseline"><div class="lg:col-span-1 num text-turq text-[1.4rem]">05</div><h3 class="lg:col-span-4 text-[20px] font-extrabold tracking-[-0.01em]">Integrated Solutions</h3><p class="lg:col-span-7 text-ink/65 text-[15px] leading-relaxed">Advisory and operations under one roof — the people who plan the move also run it.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROMISE -->
+  <section class="bg-ink text-bone">
+    <div class="max-w-site mx-auto px-6 lg:px-10 py-24 lg:py-36 text-center">
+      <p class="serif-it text-bone mb-10" style="font-size:clamp(2.6rem,7vw,6rem)">Excellence. <span class="text-turq">Discretion.</span> Insight.</p>
+      <a data-route="quote" href="#quote" class="btn-turq text-[14px] px-8 py-4 inline-block">Book a consultation <span class="ml-1">»</span></a>
+    </div>
+  </section>
+
+</main>
+
+<!-- ░░░░░░░░░░░░ FAIRS ░░░░░░░░░░░░ -->
+<main data-page="fairs">
+
+  <!-- HERO -->
+  <section class="bg-ink text-bone">
+    <div class="max-w-site mx-auto px-6 lg:px-10 pt-20 pb-20 lg:pt-28 lg:pb-28">
+      <div class="eopen mb-9"><span class="chev text-[14px]">»»</span><span class="rule"></span><span class="eyebrow eyebrow-stone">Fairs · Serviced since 2009</span></div>
+      <h1 class="display text-bone max-w-[18ch]" style="font-size:clamp(2.8rem,7.5vw,6.5rem)">The <span class="hl">fairs</span> partner Miami trusts.</h1>
+      <p class="mt-10 text-stone text-[16px] lg:text-[19px] leading-relaxed max-w-[44rem]">From a single booth install to coordinated multi-booth logistics across Basel week. We handle the crate, the truck, the install, the transit storage, and the breakdown — so galleries and artists arrive ready.</p>
+    </div>
+  </section>
+
+  <!-- FAIR CALENDAR -->
+  <section class="bg-bone">
+    <div class="max-w-site mx-auto px-6 lg:px-10 py-24 lg:py-32">
+      <div class="eopen mb-12 reveal"><span class="chev text-[14px]">»»</span><span class="rule"></span><span class="eyebrow">The fair calendar</span></div>
+      <div class="border-t border-hair reveal">
+        <div class="ed-row group flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1 py-7 border-b border-hair px-2 lg:px-4"><h2 class="text-[26px] lg:text-[38px] font-extrabold tracking-[-0.03em]">Art Basel Miami Beach</h2><span class="meta">December · Miami Beach Convention Center</span></div>
+        <div class="ed-row group flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1 py-7 border-b border-hair px-2 lg:px-4"><h2 class="text-[26px] lg:text-[38px] font-extrabold tracking-[-0.03em]">Untitled</h2><span class="meta">December · Ocean Drive &amp; 12th</span></div>
+        <div class="ed-row group flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1 py-7 border-b border-hair px-2 lg:px-4"><h2 class="text-[26px] lg:text-[38px] font-extrabold tracking-[-0.03em]">Scope Miami Beach</h2><span class="meta">December · Ocean Drive</span></div>
+        <div class="ed-row group flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1 py-7 border-b border-hair px-2 lg:px-4"><h2 class="text-[26px] lg:text-[38px] font-extrabold tracking-[-0.03em]">Design Miami</h2><span class="meta">December · Pride Park</span></div>
+        <div class="ed-row group flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1 py-7 border-b border-hair px-2 lg:px-4"><h2 class="text-[26px] lg:text-[38px] font-extrabold tracking-[-0.03em]">Art Miami</h2><span class="meta">December · One Herald Plaza</span></div>
+        <div class="ed-row group flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1 py-7 border-b border-hair px-2 lg:px-4"><h2 class="text-[26px] lg:text-[38px] font-extrabold tracking-[-0.03em]">Context Art Miami</h2><span class="meta">December · One Herald Plaza</span></div>
+        <div class="ed-row group flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1 py-7 border-b border-hair px-2 lg:px-4"><h2 class="text-[26px] lg:text-[38px] font-extrabold tracking-[-0.03em]">Aqua Art Miami</h2><span class="meta">December · Aqua Hotel</span></div>
+        <div class="ed-row group flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1 py-7 border-b border-hair px-2 lg:px-4"><h2 class="text-[26px] lg:text-[38px] font-extrabold tracking-[-0.03em]">NADA Miami</h2><span class="meta">December · Ice Palace Studios</span></div>
+        <div class="ed-row group flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1 py-7 border-b border-hair px-2 lg:px-4"><h2 class="text-[26px] lg:text-[38px] font-extrabold tracking-[-0.03em]">Art Wynwood</h2><span class="meta">February · Midtown Miami</span></div>
+        <div class="ed-row group flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1 py-7 border-b border-hair px-2 lg:px-4"><h2 class="text-[26px] lg:text-[38px] font-extrabold tracking-[-0.03em]">Palm Beach Art Fair</h2><span class="meta">Spring · Palm Beach County Convention Center</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2023 BY THE NUMBERS -->
+  <section class="bg-ink text-bone">
+    <div class="max-w-site mx-auto px-6 lg:px-10 py-24 lg:py-32">
+      <div class="eopen mb-12 reveal"><span class="chev text-[14px]">»»</span><span class="rule"></span><span class="eyebrow eyebrow-stone">2023 by the numbers</span></div>
+      <div class="grid md:grid-cols-3 gap-12 lg:gap-8 reveal">
+        <div><div class="serif-it text-turq leading-none" style="font-size:clamp(4rem,9vw,7.5rem)">47</div><p class="meta mt-4">Booths serviced across all fairs</p></div>
+        <div><div class="serif-it text-turq leading-none" style="font-size:clamp(4rem,9vw,7.5rem)">3,103</div><p class="meta mt-4">Cu.ft. of stored art during fair season</p></div>
+        <div><div class="serif-it text-turq leading-none" style="font-size:clamp(4rem,9vw,7.5rem)">10</div><p class="meta mt-4">Fairs covered</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CAPACITY -->
+  <section class="bg-bone border-b border-hair">
+    <div class="max-w-site mx-auto px-6 lg:px-10 py-24 lg:py-32">
+      <div class="grid lg:grid-cols-12 gap-10 lg:gap-14 items-start">
+        <div class="lg:col-span-4">
+          <div class="eopen mb-7"><span class="chev text-[14px]">»»</span><span class="rule"></span><span class="eyebrow">Capacity &amp; resources</span></div>
+          <h2 class="display-tight text-ink mb-5" style="font-size:clamp(2rem,4.4vw,3.2rem)">Built to scale<br>for the season.</h2>
+          <p class="text-ink/60 text-[15px] leading-relaxed">A lean standing core that expands on demand. For a full fair we scale crews and fleet well beyond the everyday baseline — enough to take on an entire show, not just a booth.</p>
+        </div>
+        <div class="lg:col-span-4">
+          <p class="meta mb-5">Personnel · scales on demand</p>
+          <div class="flex items-baseline gap-3 mb-3"><span class="num text-ink text-[3rem]">8</span><span class="text-[14px] font-semibold text-ink/70">full-time art handlers (W2)</span></div>
+          <div class="flex items-baseline gap-3 mb-5"><span class="num text-ink text-[3rem]">12<span class="text-turq">+</span></span><span class="text-[14px] font-semibold text-ink/70">freelance art handlers (1099), expandable</span></div>
+          <p class="text-ink/60 text-[15px] leading-relaxed">The vetted freelance bench grows for fair season — continuously trained and assessed year-round, so surge weeks run on people who already know the work.</p>
+        </div>
+        <div class="lg:col-span-4">
+          <p class="meta mb-5">Fleet · surge-ready</p>
+          <ul class="space-y-3 text-[15px] text-ink/80">
+            <li class="flex gap-3 border-b border-hair pb-3"><span class="text-turq font-bold">»</span> 2 × 24ft straight box trucks (standing)</li>
+            <li class="flex gap-3 border-b border-hair pb-3"><span class="text-turq font-bold">»</span> 1 × Sprinter Van (standing)</li>
+            <li class="flex gap-3 pb-3"><span class="text-turq font-bold">»</span> Rental fleet support (Ryder, up to 3 weeks) scaled to the show's volume</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- surge band -->
+      <div class="mt-14 lg:mt-16 border border-hair grid md:grid-cols-12 items-center">
+        <div class="md:col-span-4 bg-ink text-bone p-8 lg:p-10">
+          <div class="num text-turq leading-none" style="font-size:clamp(3.4rem,7vw,5.5rem)">20×</div>
+          <p class="meta mt-3" style="color:#a4a5a6">Surge capacity</p>
+        </div>
+        <div class="md:col-span-8 p-8 lg:p-10">
+          <p class="text-ink text-[17px] lg:text-[19px] leading-relaxed max-w-[44rem]">When a show calls for it, we scale crews and fleet up to <span class="font-semibold">twenty times</span> the everyday baseline — enough to crate, transport, install, transit-store, and break down a <span class="hl">whole fair</span>, not a single booth.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- END TO END -->
+  <section class="bg-bone">
+    <div class="max-w-site mx-auto px-6 lg:px-10 py-24 lg:py-32">
+      <div class="eopen mb-12 reveal"><span class="chev text-[14px]">»»</span><span class="rule"></span><span class="eyebrow">What we handle, end to end</span></div>
+      <div class="grid md:grid-cols-5 border-t border-hair reveal">
+        <div class="border-b md:border-b-0 md:border-r border-hair py-8 md:px-5 md:py-6"><div class="num text-turq text-[2rem] mb-3">01</div><p class="text-[15px] font-bold mb-1.5">Crate</p><p class="text-ink/60 text-[13px] leading-relaxed">Build and pack to ISPM-15 spec at our shop.</p></div>
+        <div class="border-b md:border-b-0 md:border-r border-hair py-8 md:px-5 md:py-6"><div class="num text-turq text-[2rem] mb-3">02</div><p class="text-[15px] font-bold mb-1.5">Transport</p><p class="text-ink/60 text-[13px] leading-relaxed">Move to the venue, tracked the whole way.</p></div>
+        <div class="border-b md:border-b-0 md:border-r border-hair py-8 md:px-5 md:py-6"><div class="num text-turq text-[2rem] mb-3">03</div><p class="text-[15px] font-bold mb-1.5">Install</p><p class="text-ink/60 text-[13px] leading-relaxed">Hang and place the booth to plan.</p></div>
+        <div class="border-b md:border-b-0 md:border-r border-hair py-8 md:px-5 md:py-6"><div class="num text-turq text-[2rem] mb-3">04</div><p class="text-[15px] font-bold mb-1.5">Transit-store</p><p class="text-ink/60 text-[13px] leading-relaxed">Hold crates and unsold work in climate storage.</p></div>
+        <div class="py-8 md:px-5 md:py-6"><div class="num text-turq text-[2rem] mb-3">05</div><p class="text-[15px] font-bold mb-1.5">Breakdown</p><p class="text-ink/60 text-[13px] leading-relaxed">De-install, re-pack, and ship out or return.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALLERIES (placeholder) -->
+  <section class="bg-bone border-t border-hair">
+    <div class="max-w-site mx-auto px-6 lg:px-10 py-20 lg:py-24">
+      <p class="meta mb-7">Galleries we've worked with</p>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-px bg-hair border border-hair">
+        <div class="bg-bone h-24 flex items-center justify-center"><span class="meta text-stone/70">Gallery names</span></div>
+        <div class="bg-bone h-24 flex items-center justify-center"><span class="meta text-stone/70">Pending approval</span></div>
+        <div class="bg-bone h-24 flex items-center justify-center"><span class="meta text-stone/70">Pending approval</span></div>
+        <div class="bg-bone h-24 flex items-center justify-center"><span class="meta text-stone/70">Pending approval</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="bg-ink text-bone">
+    <div class="max-w-site mx-auto px-6 lg:px-10 py-24 lg:py-32 text-center">
+      <h2 class="display text-bone mb-10" style="font-size:clamp(2.2rem,5.5vw,4.6rem)">On the calendar for <span class="serif-it font-normal text-turq">Basel 2026</span>?</h2>
+      <a data-route="quote" href="#quote" class="btn-turq text-[14px] px-8 py-4 inline-block">Inquire about Basel 2026 <span class="ml-1">»</span></a>
+    </div>
+  </section>
+
+</main>
+
+<!-- ░░░░░░░░░░░░ GET A QUOTE ░░░░░░░░░░░░ -->
+<main data-page="quote">
+
+  <section class="bg-bone">
+    <div class="max-w-site mx-auto px-6 lg:px-10 pt-16 pb-24 lg:pt-20 lg:pb-32">
+      <div class="grid lg:grid-cols-12 gap-12 lg:gap-16">
+
+        <!-- FORM COLUMN -->
+        <div class="lg:col-span-8">
+          <div class="eopen mb-6"><span class="chev text-[14px]">»»</span><span class="rule"></span><span class="eyebrow">Quote request</span></div>
+          <h1 class="display-tight text-ink mb-4" style="font-size:clamp(2.4rem,5.5vw,4.2rem)">Tell us about the move.</h1>
+          <p class="text-ink/65 text-[16px] lg:text-[18px] leading-relaxed mb-12 max-w-[40rem]">An itemized, all-in quote in your inbox within two business hours.</p>
+
+          <!-- progress -->
+          <div id="qProgress" class="mb-12">
+            <div class="flex items-baseline justify-between mb-3">
+              <span id="qStepLabel" class="meta text-ink">Step 1 of 5 · What you need</span>
+              <span id="qPct" class="meta text-ink">20%</span>
+            </div>
+            <div class="h-[3px] w-full bg-hair"><div id="qBar" class="h-full bg-turq transition-all duration-500" style="width:20%"></div></div>
+          </div>
+
+          <form id="quoteForm" action="https://formspree.io/f/maqkgqpr" method="POST" novalidate>
+            <!-- STEP 1 -->
+            <div class="qstep active" data-step="1">
+              <h2 class="text-[20px] font-bold tracking-[-0.01em] mb-6">What do you need?</h2>
+              <div class="grid sm:grid-cols-2 gap-4">
+                <button type="button" class="opt-card text-left border border-hair p-6 bg-white" data-group="need" data-value="h-single" data-cat="handling" aria-pressed="false">
+                  <p class="text-[17px] font-bold mb-1.5">Fine Art Handling — single move</p>
+                  <p class="text-ink/60 text-[14px] leading-relaxed">One work or one route. Crate, transport, install.</p>
+                </button>
+                <button type="button" class="opt-card text-left border border-hair p-6 bg-white" data-group="need" data-value="h-full" data-cat="handling" aria-pressed="false">
+                  <p class="text-[17px] font-bold mb-1.5">Fine Art Handling — full project</p>
+                  <p class="text-ink/60 text-[14px] leading-relaxed">Pack, ship, and install across a larger scope.</p>
+                </button>
+                <button type="button" class="opt-card text-left border border-hair p-6 bg-white" data-group="need" data-value="ccm" data-cat="ccm" aria-pressed="false">
+                  <p class="text-[17px] font-bold mb-1.5">Concierge Collection Management</p>
+                  <p class="text-ink/60 text-[14px] leading-relaxed">Advisory — cataloguing, condition, oversight, legacy.</p>
+                </button>
+                <button type="button" class="opt-card text-left border border-hair p-6 bg-white" data-group="need" data-value="fairs" data-cat="fairs" aria-pressed="false">
+                  <p class="text-[17px] font-bold mb-1.5">Fairs — booth or season</p>
+                  <p class="text-ink/60 text-[14px] leading-relaxed">Crate, install, transit-store, and break down.</p>
+                </button>
+              </div>
+            </div>
+
+            <!-- STEP 2 -->
+            <div class="qstep" data-step="2">
+              <h2 class="text-[20px] font-bold tracking-[-0.01em] mb-6">Details</h2>
+
+              <!-- branch: handling -->
+              <div class="qbranch" data-branch="handling">
+                <p class="meta mb-3">How many items?</p>
+                <div class="flex flex-wrap gap-2.5 mb-8">
+                  <button type="button" class="chip border border-hair px-5 py-2.5 text-[14px] font-semibold" data-group="count" data-value="1" aria-pressed="false">1</button>
+                  <button type="button" class="chip border border-hair px-5 py-2.5 text-[14px] font-semibold" data-group="count" data-value="2-5" aria-pressed="false">2–5</button>
+                  <button type="button" class="chip border border-hair px-5 py-2.5 text-[14px] font-semibold" data-group="count" data-value="6-20" aria-pressed="false">6–20</button>
+                  <button type="button" class="chip border border-hair px-5 py-2.5 text-[14px] font-semibold" data-group="count" data-value="20+" aria-pressed="false">20+</button>
+                </div>
+                <p class="meta mb-3">Largest piece (inches)</p>
+                <div class="grid grid-cols-3 gap-3 mb-8 max-w-md">
+                  <label class="block"><span class="sr-only">Height</span><input class="qinput w-full px-4 py-3 text-[15px]" type="number" min="0" placeholder="H"></label>
+                  <label class="block"><span class="sr-only">Width</span><input class="qinput w-full px-4 py-3 text-[15px]" type="number" min="0" placeholder="W"></label>
+                  <label class="block"><span class="sr-only">Depth</span><input class="qinput w-full px-4 py-3 text-[15px]" type="number" min="0" placeholder="D"></label>
+                </div>
+                <p class="meta mb-3">Approximate insured value</p>
+                <select class="qinput w-full max-w-md px-4 py-3 text-[15px] mb-8">
+                  <option value="">Select a bracket</option>
+                  <option>Under $25K</option><option>$25K–$100K</option><option>$100K–$500K</option><option>$500K–$2M</option><option>$2M+</option><option>Prefer not to say</option>
+                </select>
+                <p class="meta mb-3">Have an inventory? <span class="text-stone normal-case tracking-normal">(optional)</span></p>
+                <label class="block border border-dashed border-stone/50 p-6 text-center cursor-pointer hover:border-turq transition-colors max-w-md">
+                  <input type="file" class="hidden" accept=".xlsx,.csv,.pdf">
+                  <span class="text-[14px] text-ink/60">Drop a file or browse · XLSX, CSV, or PDF</span>
+                </label>
+              </div>
+
+              <!-- branch: ccm -->
+              <div class="qbranch" data-branch="ccm">
+                <p class="meta mb-3">Collection size</p>
+                <div class="flex flex-wrap gap-2.5 mb-8">
+                  <button type="button" class="chip border border-hair px-5 py-2.5 text-[14px] font-semibold" data-group="size" data-value="<25" aria-pressed="false">Under 25 works</button>
+                  <button type="button" class="chip border border-hair px-5 py-2.5 text-[14px] font-semibold" data-group="size" data-value="25-75" aria-pressed="false">25–75</button>
+                  <button type="button" class="chip border border-hair px-5 py-2.5 text-[14px] font-semibold" data-group="size" data-value="75+" aria-pressed="false">75+</button>
+                </div>
+                <p class="meta mb-3">Current state</p>
+                <div class="flex flex-wrap gap-2.5 mb-8">
+                  <button type="button" class="chip border border-hair px-5 py-2.5 text-[14px] font-semibold" data-group="state" data-value="none" aria-pressed="false">Uncatalogued</button>
+                  <button type="button" class="chip border border-hair px-5 py-2.5 text-[14px] font-semibold" data-group="state" data-value="partial" aria-pressed="false">Partially catalogued</button>
+                  <button type="button" class="chip border border-hair px-5 py-2.5 text-[14px] font-semibold" data-group="state" data-value="full" aria-pressed="false">Fully catalogued</button>
+                </div>
+                <p class="meta mb-3">Tier interest</p>
+                <div class="flex flex-wrap gap-2.5">
+                  <button type="button" class="chip border border-hair px-5 py-2.5 text-[14px] font-semibold" data-group="tier" data-value="foundation" aria-pressed="false">Foundation</button>
+                  <button type="button" class="chip border border-hair px-5 py-2.5 text-[14px] font-semibold" data-group="tier" data-value="signature" aria-pressed="false">Signature</button>
+                  <button type="button" class="chip border border-hair px-5 py-2.5 text-[14px] font-semibold" data-group="tier" data-value="legacy" aria-pressed="false">Legacy</button>
+                  <button type="button" class="chip border border-hair px-5 py-2.5 text-[14px] font-semibold" data-group="tier" data-value="unsure" aria-pressed="false">Not sure</button>
+                </div>
+              </div>
+
+              <!-- branch: fairs -->
+              <div class="qbranch" data-branch="fairs">
+                <p class="meta mb-3">Which fair?</p>
+                <select class="qinput w-full max-w-md px-4 py-3 text-[15px] mb-8">
+                  <option value="">Select a fair</option>
+                  <option>Art Basel Miami Beach</option><option>Untitled</option><option>Scope Miami Beach</option><option>Design Miami</option><option>Art Miami</option><option>Context Art Miami</option><option>Aqua Art Miami</option><option>NADA Miami</option><option>Art Wynwood</option><option>Palm Beach Art Fair</option><option>Multiple / full season</option>
+                </select>
+                <p class="meta mb-3">Booth size <span class="text-stone normal-case tracking-normal">(sq.ft. or booth no.)</span></p>
+                <input class="qinput w-full max-w-md px-4 py-3 text-[15px] mb-8" type="text" placeholder="e.g. 400 sq.ft. · Booth C12">
+                <p class="meta mb-3">Services needed</p>
+                <div class="flex flex-wrap gap-2.5">
+                  <button type="button" class="chip border border-hair px-5 py-2.5 text-[14px] font-semibold" data-group="fairsvc" data-value="full" aria-pressed="false">Full (crate → breakdown)</button>
+                  <button type="button" class="chip border border-hair px-5 py-2.5 text-[14px] font-semibold" data-group="fairsvc" data-value="install" aria-pressed="false">Install only</button>
+                  <button type="button" class="chip border border-hair px-5 py-2.5 text-[14px] font-semibold" data-group="fairsvc" data-value="breakdown" aria-pressed="false">Breakdown only</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- STEP 3 -->
+            <div class="qstep" data-step="3">
+              <h2 class="text-[20px] font-bold tracking-[-0.01em] mb-6" data-s3-title>From / To</h2>
+
+              <!-- branch: route (handling + fairs) -->
+              <div class="qbranch" data-branch="route">
+                <div class="grid md:grid-cols-2 gap-6">
+                  <div>
+                    <p class="meta mb-3">Origin</p>
+                    <input class="qinput w-full px-4 py-3 text-[15px] mb-4" type="text" placeholder='Address, city, ZIP, or "My ArtMoves storage"'>
+                    <p class="meta mb-3">Access</p>
+                    <select class="qinput w-full px-4 py-3 text-[15px]"><option value="">Select access</option><option>Ground floor</option><option>Elevator</option><option>Stairs</option><option>Loading dock</option></select>
+                  </div>
+                  <div>
+                    <p class="meta mb-3">Destination</p>
+                    <input class="qinput w-full px-4 py-3 text-[15px] mb-4" type="text" placeholder="Address, city, ZIP, or venue">
+                    <p class="meta mb-3">Access</p>
+                    <select class="qinput w-full px-4 py-3 text-[15px]"><option value="">Select access</option><option>Ground floor</option><option>Elevator</option><option>Stairs</option><option>Loading dock</option></select>
+                  </div>
+                </div>
+              </div>
+
+              <!-- branch: ccm locations -->
+              <div class="qbranch" data-branch="ccm">
+                <p class="meta mb-3">Where is the collection located?</p>
+                <input class="qinput w-full max-w-xl px-4 py-3 text-[15px] mb-8" type="text" placeholder="City, or cities">
+                <p class="meta mb-3">Is it in one place or multi-site?</p>
+                <div class="flex flex-wrap gap-2.5">
+                  <button type="button" class="chip border border-hair px-5 py-2.5 text-[14px] font-semibold" data-group="sites" data-value="single" aria-pressed="false">One location</button>
+                  <button type="button" class="chip border border-hair px-5 py-2.5 text-[14px] font-semibold" data-group="sites" data-value="multi" aria-pressed="false">Multi-site</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- STEP 4 -->
+            <div class="qstep" data-step="4">
+              <h2 class="text-[20px] font-bold tracking-[-0.01em] mb-6">Timing</h2>
+              <p class="meta mb-3">Target date</p>
+              <input class="qinput w-full max-w-xs px-4 py-3 text-[15px] mb-8" type="date">
+              <p class="meta mb-3">Flexibility</p>
+              <div class="flex flex-wrap gap-2.5 mb-8">
+                <button type="button" class="chip border border-hair px-5 py-2.5 text-[14px] font-semibold" data-group="flex" data-value="exact" aria-pressed="false">Exact</button>
+                <button type="button" class="chip border border-hair px-5 py-2.5 text-[14px] font-semibold" data-group="flex" data-value="week" aria-pressed="false">± 1 week</button>
+                <button type="button" class="chip border border-hair px-5 py-2.5 text-[14px] font-semibold" data-group="flex" data-value="month" aria-pressed="false">± 1 month</button>
+              </div>
+              <p class="meta mb-3">Anything else?</p>
+              <textarea class="qinput w-full px-4 py-3 text-[15px] leading-relaxed" rows="4" placeholder="Fragility, climate sensitivity, customs/import, install notes…"></textarea>
+            </div>
+
+            <!-- STEP 5 -->
+            <div class="qstep" data-step="5">
+              <h2 class="text-[20px] font-bold tracking-[-0.01em] mb-6">Contact</h2>
+              <div class="grid sm:grid-cols-2 gap-5">
+                <label class="block"><span class="meta block mb-2.5">Full name</span><input class="qinput w-full px-4 py-3 text-[15px]" type="text" placeholder="Full name"></label>
+                <label class="block"><span class="meta block mb-2.5">Company or gallery</span><input class="qinput w-full px-4 py-3 text-[15px]" type="text" placeholder="Company / gallery"></label>
+                <label class="block"><span class="meta block mb-2.5">Email</span><input class="qinput w-full px-4 py-3 text-[15px]" type="email" placeholder="you@example.com"></label>
+                <label class="block"><span class="meta block mb-2.5">Phone</span><input class="qinput w-full px-4 py-3 text-[15px]" type="tel" placeholder="+1 305 000 0000"></label>
+              </div>
+            </div>
+
+            <!-- nav -->
+            <div class="flex items-center justify-between mt-12 pt-8 border-t border-hair">
+              <button type="button" id="qBack" class="text-[14px] font-semibold text-ink/60 hover:text-ink disabled:opacity-30 disabled:cursor-not-allowed">← Back</button>
+              <button type="button" id="qNext" class="btn-ink text-[14px] px-7 py-3.5 disabled:opacity-40 disabled:cursor-not-allowed">Continue <span class="ml-1">»</span></button>
+            </div>
+          </form>
+
+          <!-- success -->
+          <div id="qSuccess" class="hidden">
+            <div class="w-20 h-20 bg-turq flex items-center justify-center mb-8">
+              <svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="#0a0a0a" stroke-width="2.5"><path d="M4 12.5l5 5L20 6.5"/></svg>
+            </div>
+            <h2 class="display-tight text-ink mb-5" style="font-size:clamp(2.2rem,5vw,3.6rem)">Request received.</h2>
+            <p class="text-ink/70 text-[17px] leading-relaxed max-w-[38rem] mb-3">Your reference number is <span class="mono font-semibold text-ink">WM-2026-Q-0847</span>. An itemized, all-in quote will reach your inbox within two business hours during business days.</p>
+            <p class="text-ink/60 text-[15px] mb-8">For urgent inquiries, call <a class="underline-link font-semibold" href="tel:+13055010002">+1 305 501 0002</a>.</p>
+            <a data-route="home" href="#home" class="btn-ghost px-7 py-3.5 text-[14px] inline-block">Back to home</a>
+          </div>
+        </div>
+
+        <!-- TRUST RAIL -->
+        <aside class="lg:col-span-4">
+          <div class="lg:sticky lg:top-[90px] border border-hair p-7 lg:p-8 bg-white">
+            <p class="meta mb-7">Why ArtMoves</p>
+            <ul class="space-y-6">
+              <li><p class="text-[15px] font-bold flex gap-3"><span class="text-turq">»</span> Quote in 2 business hours</p><p class="text-ink/60 text-[13px] mt-1 pl-6">Itemized, all-in, no surprise fees.</p></li>
+              <li><p class="text-[15px] font-bold flex gap-3"><span class="text-turq">»</span> ISPM-15 / IPPC certified crating</p><p class="text-ink/60 text-[13px] mt-1 pl-6">Museum-level, customs-ready.</p></li>
+              <li><p class="text-[15px] font-bold flex gap-3"><span class="text-turq">»</span> Museum-quality-trained handlers</p><p class="text-ink/60 text-[13px] mt-1 pl-6">Trained on fine art handling and condition reporting.</p></li>
+              <li><p class="text-[15px] font-bold flex gap-3"><span class="text-turq">»</span> Climate-controlled storage</p><p class="text-ink/60 text-[13px] mt-1 pl-6">Security-monitored, disaster-planned.</p></li>
+              <li><p class="text-[15px] font-bold flex gap-3"><span class="text-turq">»</span> Full chain of custody</p><p class="text-ink/60 text-[13px] mt-1 pl-6">Live tracking and signed reports via WeMove.Art.</p></li>
+              <li><p class="text-[15px] font-bold flex gap-3"><span class="text-turq">»</span> Since 1987 · Miami</p><p class="text-ink/60 text-[13px] mt-1 pl-6">5★ on Google. The same family of operators.</p></li>
+            </ul>
+            <div class="mt-8 pt-6 border-t border-hair">
+              <p class="text-ink/70 text-[13px] mb-1">Talking to a person works too.</p>
+              <p class="text-[14px] font-semibold"><a class="underline-link" href="tel:+13055010002">+1 305 501 0002</a></p>
+              <p class="text-[14px] font-semibold"><a class="underline-link" href="/cdn-cgi/l/email-protection#b7ffd2dbdbd8f7e0d2fad8c1d299f6c5c3"><span class="__cf_email__" data-cfemail="e1a9848d8d8ea1b684ac8e9784cfa09395">[email&#160;protected]</span></a></p>
+            </div>
+          </div>
+        </aside>
+
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ░░░░░░░░░░░░ ABOUT ░░░░░░░░░░░░ -->
+<main data-page="about">
+
+  <!-- HERO -->
+  <section class="bg-bone border-b border-hair">
+    <div class="max-w-site mx-auto px-6 lg:px-10 pt-20 pb-20 lg:pt-28 lg:pb-28">
+      <div class="eopen mb-9"><span class="chev text-[14px]">»»</span><span class="rule"></span><span class="eyebrow">About</span></div>
+      <h1 class="display text-ink max-w-[20ch]" style="font-size:clamp(2.6rem,6.5vw,5.6rem)">Since <span class="hl">1987</span>. Setting the standard for fine art services in Miami.</h1>
+      <p class="mt-10 text-ink/65 text-[16px] lg:text-[19px] leading-relaxed max-w-[46rem]">ArtMoves was founded in 1987. We are Miami's longest-running comprehensive fine art handling and collection management company. Our work is rooted in trust, tailored to your needs, and built to protect the cultural assets that define your legacy.</p>
+    </div>
+  </section>
+
+  <!-- MISSION & VISION -->
+  <section class="bg-bone border-b border-hair">
+    <div class="max-w-site mx-auto px-6 lg:px-10 py-24 lg:py-32">
+      <div class="grid lg:grid-cols-2 gap-px bg-hair border border-hair">
+        <div class="bg-bone p-8 lg:p-12">
+          <p class="meta mb-6">Mission</p>
+          <p class="serif-it text-ink text-[22px] lg:text-[28px] leading-snug">To set the benchmark in fine art logistics — combining unparalleled expertise with technology to deliver museum-grade services that redefine industry standards.</p>
+        </div>
+        <div class="bg-bone p-8 lg:p-12">
+          <p class="meta mb-6">Vision</p>
+          <p class="serif-it text-ink text-[22px] lg:text-[28px] leading-snug">To empower and enrich the local art community by providing unparalleled, museum-grade logistics and support.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TEAM -->
+  <section class="bg-bone border-b border-hair">
+    <div class="max-w-site mx-auto px-6 lg:px-10 py-24 lg:py-32">
+      <div class="eopen mb-14 reveal"><span class="chev text-[14px]">»»</span><span class="rule"></span><span class="eyebrow">The team</span></div>
+
+      <div class="space-y-16 lg:space-y-20">
+        <!-- Val -->
+        <div class="grid lg:grid-cols-12 gap-8 lg:gap-12 items-start reveal">
+          <div class="lg:col-span-3">
+            <div class="photo ph-portrait w-40 h-40 rounded-full" role="img" aria-label="Portrait of Fernand Valery Adrien, Founder and CEO"><div class="ph-tint"></div></div>
+          </div>
+          <div class="lg:col-span-9">
+            <h3 class="text-[26px] font-extrabold tracking-[-0.02em]">Fernand Valery Adrien</h3>
+            <p class="meta mt-2 mb-5">Founder &amp; CEO</p>
+            <div class="space-y-4 text-ink/70 text-[16px] leading-relaxed max-w-[52rem]">
+              <p>Founder, operator, and architect of WeMove.Art. Fernand stewards every engagement personally — from intake to install — and built the operating platform the rest of the team runs on.</p>
+              <p>His conviction is simple: the people who own irreplaceable work deserve to see what the handlers see. That conviction became the company's technology, and the standard the team holds to.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Gaël -->
+        <div class="grid lg:grid-cols-12 gap-8 lg:gap-12 items-start reveal">
+          <div class="lg:col-span-3">
+            <div class="photo ph-portrait w-40 h-40 rounded-full" role="img" aria-label="Portrait of Gaël Monnin, Director of Collection Management"><div class="ph-tint"></div></div>
+          </div>
+          <div class="lg:col-span-9">
+            <h3 class="text-[26px] font-extrabold tracking-[-0.02em]">Gaël Monnin</h3>
+            <p class="meta mt-2 mb-5">Director of Collection Management</p>
+            <div class="space-y-4 text-ink/70 text-[16px] leading-relaxed max-w-[52rem]">
+              <p>Owner and curator of Galerie Monnin, descended from a family of gallerists that opened the gallery to the public in Haïti in 1956. Executive director of the Monnin Private Collection and an Emerson College graduate.</p>
+              <p>She worked in sales for the Delacroix family's fine art gallery in New York and facilitated the Lowe Art Museum's acquisition of a work by a major Haitian artist.</p>
+            </div>
+            <a href="/cdn-cgi/l/email-protection#783f191d14382f1d35170e1d56390a0c" class="inline-block mt-5 text-[14px] font-semibold text-ink underline-link"><span class="__cf_email__" data-cfemail="acebcdc9c0ecfbc9e1c3dac982edded8">[email&#160;protected]</span></a>
+          </div>
+        </div>
+
+        <!-- Holly -->
+        <div class="grid lg:grid-cols-12 gap-8 lg:gap-12 items-start reveal">
+          <div class="lg:col-span-3">
+            <div class="photo ph-portrait w-40 h-40 rounded-full" role="img" aria-label="Portrait of Holly Hawkes, Senior Advisor"><div class="ph-tint"></div></div>
+          </div>
+          <div class="lg:col-span-9">
+            <h3 class="text-[26px] font-extrabold tracking-[-0.02em]">Holly Hawkes</h3>
+            <p class="meta mt-2 mb-5">Senior Advisor, Collection Management</p>
+            <div class="space-y-4 text-ink/70 text-[16px] leading-relaxed max-w-[52rem]">
+              <p>Began her career at Sotheby's New York as a specialist in the Impressionist and Modern Art Department, working on the Collection of Mr. &amp; Mrs. John Hay Whitney and the Eleanore and Daniel Saidenberg Collection.</p>
+              <p>She has managed a contemporary artist's studio and a private collection of African American Art, with skills spanning research, cataloguing, collections care, appraisal, insurance, and conservation oversight.</p>
+            </div>
+            <a href="/cdn-cgi/l/email-protection#c48caba8a8bd8493a189abb2a1ea85b6b0" class="inline-block mt-5 text-[14px] font-semibold text-ink underline-link"><span class="__cf_email__" data-cfemail="1a52757676635a4d7f57756c7f345b686e">[email&#160;protected]</span></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-16 lg:mt-20 pt-8 border-t border-hair">
+        <p class="text-ink/65 text-[16px] leading-relaxed max-w-[52rem]">Behind the advisory team is the operation: <span class="font-semibold text-ink">8 full-time art handlers (W2)</span> and <span class="font-semibold text-ink">12 freelance handlers (1099)</span>, continuously trained and assessed — the people who crate, drive, install, and sign off on every move.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FACILITY -->
+  <section class="bg-ink text-bone">
+    <div class="max-w-site mx-auto px-6 lg:px-10 py-24 lg:py-32">
+      <div class="grid lg:grid-cols-12 gap-10 lg:gap-14 items-center">
+        <div class="lg:col-span-6">
+          <div class="photo ph-facility h-80 lg:h-[26rem]" role="img" aria-label="Black-and-white photograph of the ArtMoves Miami headquarters"><div class="ph-tint"></div><span class="ph-label">Headquarters · 2900 NW 112th Ave</span></div>
+        </div>
+        <div class="lg:col-span-5 lg:col-start-8">
+          <div class="eopen mb-7"><span class="chev text-[14px]">»»</span><span class="rule"></span><span class="eyebrow eyebrow-stone">The facility</span></div>
+          <h2 class="display-tight text-bone mb-6" style="font-size:clamp(2rem,4.4vw,3.2rem)">Miami HQ.</h2>
+          <p class="text-stone text-[16px] leading-relaxed mb-7">2900 NW 112th Ave, Miami, FL 33172. Climate-controlled storage, an in-house woodworking facility for custom crating, and a private viewing room available by appointment.</p>
+          <ul class="space-y-3 text-[15px] text-bone/85">
+            <li class="flex gap-3"><span class="text-turq font-bold">»</span> Climate-controlled, security-monitored storage</li>
+            <li class="flex gap-3"><span class="text-turq font-bold">»</span> In-house woodworking facility for crating</li>
+            <li class="flex gap-3"><span class="text-turq font-bold">»</span> Private viewing room, by appointment</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROMISE -->
+  <section class="bg-bone border-b border-hair">
+    <div class="max-w-site mx-auto px-6 lg:px-10 py-24 lg:py-32">
+      <div class="eopen mb-12 reveal"><span class="chev text-[14px]">»»</span><span class="rule"></span><span class="eyebrow">Our promise</span></div>
+      <div class="grid md:grid-cols-3 gap-px bg-hair border border-hair reveal">
+        <div class="bg-bone p-8 lg:p-10"><p class="serif-it text-turq text-[2rem] mb-4">Excellence</p><p class="text-ink/65 text-[15px] leading-relaxed">Museum standards on every engagement, regardless of scale.</p></div>
+        <div class="bg-bone p-8 lg:p-10"><p class="serif-it text-turq text-[2rem] mb-4">Discretion</p><p class="text-ink/65 text-[15px] leading-relaxed">Quiet, confidential service for collectors who value privacy.</p></div>
+        <div class="bg-bone p-8 lg:p-10"><p class="serif-it text-turq text-[2rem] mb-4">Insight</p><p class="text-ink/65 text-[15px] leading-relaxed">Advisory depth that thinks across the life of a collection.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="bg-ink text-bone">
+    <div class="max-w-site mx-auto px-6 lg:px-10 py-24 lg:py-32 text-center">
+      <h2 class="display text-bone mb-10" style="font-size:clamp(2.2rem,5.5vw,4.4rem)">Visit us in Miami.</h2>
+      <div class="flex flex-wrap items-center justify-center gap-5">
+        <a href="https://maps.google.com/?q=2900+NW+112th+Ave+Miami+FL+33172" target="_blank" rel="noopener" class="btn-ghost-dk px-7 py-3.5 text-[14px]">2900 NW 112th Ave →</a>
+        <a data-route="quote" href="#quote" class="btn-turq text-[14px] px-7 py-3.5 inline-block">Get a quote <span class="ml-1">»</span></a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ░░░░░░░░░░░░ FOOTER ░░░░░░░░░░░░ -->
+<footer class="bg-ink text-bone">
+  <!-- partner band -->
+  <div class="border-b border-hairdk relative">
+    <div class="absolute left-0 top-0 bottom-0 w-1 bg-turq"></div>
+    <div class="max-w-site mx-auto px-6 lg:px-10 py-10 grid lg:grid-cols-12 gap-6 items-center">
+      <div class="lg:col-span-8">
+        <p class="text-[15px] lg:text-[17px] font-semibold tracking-[-0.01em]">Run your fine art operation on WeMove.Art.</p>
+        <p class="text-stone text-[14px] mt-1.5">Your brand. Your customer book. Powered by our platform.</p>
+      </div>
+      <div class="lg:col-span-4 lg:text-right">
+        <button data-partner class="btn-turq text-[13px] px-6 py-3 inline-block">Book a partner demo →</button>
+        <p class="text-stone text-[12px] mt-3">Already a partner? <a class="underline-link on-dark text-bone/80" href="https://app.wemove.art" target="_blank" rel="noopener">Sign in at app.wemove.art →</a></p>
+      </div>
+    </div>
+  </div>
+  <div class="max-w-site mx-auto px-6 lg:px-10 pt-20 pb-12">
+    <div class="grid grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-12">
+      <div class="col-span-2 lg:col-span-1">
+        <div class="flex items-center gap-3 mb-6">
+          <span id="logo-slot-footer" class="block w-[36px]"></span>
+          <span class="text-[18px] font-extrabold tracking-[-0.03em]">art<span class="font-black">Moves</span></span>
+        </div>
+        <p class="text-stone text-[14px] leading-relaxed">2900 NW 112th Ave<br>Miami, FL 33172</p>
+        <p class="text-bone text-[14px] mt-3"><a class="underline-link on-dark" href="tel:+13055010002">+1 305 501 0002</a></p>
+        <p class="text-bone text-[14px] mt-1"><a class="underline-link on-dark" href="/cdn-cgi/l/email-protection#531b363f3f3c1304361e3c25367d122127"><span class="__cf_email__" data-cfemail="6129040d0d0e2136042c0e17044f201315">[email&#160;protected]</span></a></p>
+        <p class="text-stone text-[12px] mt-6 leading-relaxed">Founded 1987.<br>Operating on WeMove.Art.</p>
+      </div>
+      <div>
+        <p class="meta mb-5">Fine Art Handling</p>
+        <ul class="space-y-3 text-[14px]">
+          <li><a class="text-bone/85 hover:text-turq transition-colors" data-route="handling" href="#handling">Global Transport</a></li>
+          <li><a class="text-bone/85 hover:text-turq transition-colors" data-route="handling" href="#handling">Custom Crating</a></li>
+          <li><a class="text-bone/85 hover:text-turq transition-colors" data-route="handling" href="#handling">Installation &amp; Removal</a></li>
+          <li><a class="text-bone/85 hover:text-turq transition-colors" data-route="handling" href="#handling">Storage</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="meta mb-5">Collection Management</p>
+        <ul class="space-y-3 text-[14px]">
+          <li><a class="text-bone/85 hover:text-turq transition-colors" data-route="ccm" href="#ccm">Foundation</a></li>
+          <li><a class="text-bone/85 hover:text-turq transition-colors" data-route="ccm" href="#ccm">Signature</a></li>
+          <li><a class="text-bone/85 hover:text-turq transition-colors" data-route="ccm" href="#ccm">Legacy</a></li>
+          <li><a class="text-bone/85 hover:text-turq transition-colors" data-route="ccm" href="#ccm">Gallery Integration</a></li>
+          <li><a class="text-bone/85 hover:text-turq transition-colors" data-route="ccm" href="#ccm">Public Art</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="meta mb-5">Company</p>
+        <ul class="space-y-3 text-[14px]">
+          <li><a class="text-bone/85 hover:text-turq transition-colors" data-route="fairs" href="#fairs">Fairs</a></li>
+          <li><a class="text-bone/85 hover:text-turq transition-colors" data-route="about" href="#about">About</a></li>
+          <li><a class="text-bone/85 hover:text-turq transition-colors" data-route="quote" href="#quote">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="mt-20 pt-7 border-t border-hairdk flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
+      <p class="text-stone text-[12px]">© 1987–2026 USL Consolidators LLC d/b/a ArtMoves</p>
+      <div class="flex flex-wrap gap-x-7 gap-y-2 text-[12px] text-stone">
+        <a class="hover:text-bone transition-colors" href="#">Privacy</a>
+        <a class="hover:text-bone transition-colors" href="#">Terms</a>
+        <a class="hover:text-bone transition-colors" href="#">Insurance</a>
+        <span class="text-stone/60">Client portal: wemove.art/portal · Partner platform: app.wemove.art</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ░░░░░░░░░░░░ PARTNER DEMO MODAL ░░░░░░░░░░░░ -->
+<div id="partnerModal" class="modal-wrap fixed inset-0 z-[100] hidden opacity-0">
+  <div class="absolute inset-0 bg-ink/70 backdrop-blur-sm" data-partner-close></div>
+  <div class="absolute inset-0 flex items-center justify-center p-5">
+    <div class="relative bg-bone w-full max-w-[520px] max-h-[92vh] overflow-y-auto border border-hair" role="dialog" aria-modal="true" aria-labelledby="pmTitle">
+      <button data-partner-close class="absolute top-4 right-4 w-9 h-9 flex items-center justify-center text-stone hover:text-ink text-2xl leading-none" aria-label="Close">×</button>
+      <div class="p-8 lg:p-10">
+        <div id="pmForm">
+          <div class="eopen mb-5"><span class="chev text-[14px]">»»</span><span class="rule"></span><span class="eyebrow">WeMove.Art Partner Program</span></div>
+          <h2 id="pmTitle" class="display-tight text-[2rem] mb-3">Book a partner demo.</h2>
+          <p class="text-ink/65 text-[15px] leading-relaxed mb-7">Run quotes, dispatch, storage, condition reports and chain of custody under your own brand at <span class="mono text-ink">{yourbrand}.wemove.art</span>. Tell us about your operation.</p>
+          <div class="space-y-4">
+            <div class="grid sm:grid-cols-2 gap-4">
+              <label class="block"><span class="meta block mb-2 text-ink/70">Name</span><input class="qinput w-full px-4 py-3 text-[15px]" type="text" placeholder="Full name"></label>
+              <label class="block"><span class="meta block mb-2 text-ink/70">Company</span><input class="qinput w-full px-4 py-3 text-[15px]" type="text" placeholder="Company / gallery"></label>
+            </div>
+            <div class="grid sm:grid-cols-2 gap-4">
+              <label class="block"><span class="meta block mb-2 text-ink/70">Role</span><input class="qinput w-full px-4 py-3 text-[15px]" type="text" placeholder="Your role"></label>
+              <label class="block"><span class="meta block mb-2 text-ink/70">City</span><input class="qinput w-full px-4 py-3 text-[15px]" type="text" placeholder="City"></label>
+            </div>
+            <label class="block"><span class="meta block mb-2 text-ink/70">Type of operation</span>
+              <select class="qinput w-full px-4 py-3 text-[15px]">
+                <option>Independent art handler</option>
+                <option>Gallery running its own logistics</option>
+                <option>Museum / institution</option>
+                <option>Freelance art technician</option>
+                <option>Other</option>
+              </select>
+            </label>
+          </div>
+          <button data-partner-submit class="btn-ink w-full mt-7 py-4 text-[14px]">Request demo <span class="text-turq ml-1">»</span></button>
+          <p class="text-stone text-[12px] mt-4 text-center">Already a partner? <a class="underline-link" href="https://app.wemove.art" target="_blank" rel="noopener">Sign in at app.wemove.art →</a></p>
+        </div>
+        <div id="pmSuccess" class="hidden text-center py-6">
+          <div class="w-16 h-16 mx-auto mb-6 bg-turq flex items-center justify-center">
+            <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#0a0a0a" stroke-width="2.5"><path d="M4 12.5l5 5L20 6.5"/></svg>
+          </div>
+          <h2 class="display-tight text-[1.8rem] mb-3">Request received.</h2>
+          <p class="text-ink/65 text-[15px] leading-relaxed max-w-[340px] mx-auto">A member of the WeMove.Art partnerships team will reach out within one business day to schedule your walkthrough.</p>
+          <button data-partner-close class="btn-ghost mt-7 px-7 py-3 text-[14px]">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  // ── logo mark (IXV) — adapts via ink fill ──
+  function logoSVG(ink) {
+    return '<svg viewBox="0 0 244 124" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full h-auto" aria-hidden="true">' +
+      '<path fill="#2bc9c4" d="M0,0 H28 V120 H12 Q0,120 0,108 Z"/>' +
+      '<path fill="#2bc9c4" d="M47,0 H87 L140,120 H100 Z"/>' +
+      '<path fill="'+ink+'" d="M62,120 L92,120 L82,92 Z"/>' +
+      '<path fill="'+ink+'" d="M118,0 L172,118 L188,118 L240,0 L208,0 L180,72 L152,0 Z"/>' +
+      '<path fill="'+ink+'" d="M214,120 L238,120 L238,94 Z"/>' +
+      '</svg>';
+  }
+  function paintLogos() {
+    document.querySelectorAll('[data-logo]').forEach(function(el){ el.innerHTML = logoSVG(el.dataset.logo === 'light' ? '#fafaf7' : '#0a0a0a'); });
+    var s = document.getElementById('logo-slot'); if (s) s.innerHTML = logoSVG('#0a0a0a');
+    var f = document.getElementById('logo-slot-footer'); if (f) f.innerHTML = logoSVG('#fafaf7');
+  }
+  paintLogos();
+
+  // ── router ──
+  var pages = ['home','handling','ccm','fairs','quote','about'];
+  function go(route, opts) {
+    opts = opts || {};
+    if (pages.indexOf(route) === -1) route = 'home';
+    document.querySelectorAll('main[data-page]').forEach(function(m){ m.classList.toggle('active', m.dataset.page === route); });
+    document.querySelectorAll('.navlink[data-route]').forEach(function(a){ a.classList.toggle('active', a.dataset.route === route); });
+    if (location.hash !== '#' + route) history.replaceState(null, '', '#' + route);
+    if (!opts.noscroll) window.scrollTo({ top: 0, behavior: 'auto' });
+    document.getElementById('mobileMenu').classList.add('hidden');
+    paintLogos();
+    runReveal();
+  }
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest('[data-route]');
+    if (!a) return;
+    e.preventDefault();
+    go(a.dataset.route);
+  });
+  document.getElementById('menuBtn').addEventListener('click', function () {
+    document.getElementById('mobileMenu').classList.toggle('hidden');
+  });
+  window.addEventListener('hashchange', function () { go(location.hash.replace('#',''), { noscroll: true }); });
+
+  // ── reveal on scroll ──
+  var io;
+  function runReveal() {
+    if (!io) {
+      io = new IntersectionObserver(function(entries){
+        entries.forEach(function(en){ if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); } });
+      }, { threshold: 0.1 });
+    }
+    document.querySelectorAll('main.active .reveal:not(.in)').forEach(function(el){ io.observe(el); });
+  }
+
+  // ── partner demo modal ──
+  (function(){
+    var modal = document.getElementById('partnerModal');
+    // Formspree endpoint for the partner demo request (distinct from the quote form).
+    var PARTNER_ENDPOINT = 'https://formspree.io/f/xkoelopv';
+    function open(){ modal.classList.remove('hidden'); requestAnimationFrame(function(){ modal.classList.remove('opacity-0'); }); document.body.style.overflow='hidden'; }
+    function close(){ modal.classList.add('opacity-0'); document.body.style.overflow=''; setTimeout(function(){ modal.classList.add('hidden'); document.getElementById('pmForm').classList.remove('hidden'); document.getElementById('pmSuccess').classList.add('hidden'); }, 300); }
+    function showPartnerSuccess(){ document.getElementById('pmForm').classList.add('hidden'); document.getElementById('pmSuccess').classList.remove('hidden'); }
+    function submitPartner(btn){
+      var pm = document.getElementById('pmForm');
+      var txt = pm.querySelectorAll('input[type="text"]');
+      var op = pm.querySelector('select');
+      function v(el){ return el ? (el.value || '').trim() : ''; }
+      var data = {
+        name: v(txt[0]),
+        company: v(txt[1]),
+        role: v(txt[2]),
+        city: v(txt[3]),
+        operation_type: op ? op.value : '',
+        _subject: 'New WeMove.Art partner demo request'
+      };
+      if (btn) btn.disabled = true;
+      fetch(PARTNER_ENDPOINT, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify(data)
+      }).then(function(r){
+        if (r.ok) { showPartnerSuccess(); }
+        else { alert('Something went wrong. Please call +1 305 501 0002 or email Hello@WeMove.Art.'); }
+      }).catch(function(){
+        alert('Connection issue. Please call +1 305 501 0002 or email Hello@WeMove.Art.');
+      }).finally(function(){ if (btn) btn.disabled = false; });
+    }
+    document.addEventListener('click', function(e){
+      if (e.target.closest('[data-partner]')) { e.preventDefault(); open(); }
+      else if (e.target.closest('[data-partner-close]')) { close(); }
+      else if (e.target.closest('[data-partner-submit]')) { submitPartner(e.target.closest('[data-partner-submit]')); }
+    });
+    document.addEventListener('keydown', function(e){ if (e.key === 'Escape' && !modal.classList.contains('hidden')) close(); });
+  })();
+
+  go((location.hash || '#home').replace('#',''), { noscroll: true });
+  window.addEventListener('load', runReveal);
+</script>
+<!--QUOTE_SCRIPT-->
+<script>
+(function () {
+  var form = document.getElementById('quoteForm');
+  if (!form) return;
+  var steps = Array.prototype.slice.call(form.querySelectorAll('.qstep'));
+  var labels = ['What you need', 'Details', 'Locations', 'Timing', 'Contact'];
+  var total = steps.length;
+  var cur = 1;
+  var sel = { need: null, cat: null, count: null, size: null, state: null, tier: null, fairsvc: null, sites: null, flex: null };
+
+  var bar = document.getElementById('qBar');
+  var pct = document.getElementById('qPct');
+  var stepLabel = document.getElementById('qStepLabel');
+  var back = document.getElementById('qBack');
+  var next = document.getElementById('qNext');
+
+  function showBranch(stepEl, name) {
+    stepEl.querySelectorAll('.qbranch').forEach(function (b) {
+      b.classList.toggle('active', b.dataset.branch === name);
+    });
+  }
+  function updateBranches() {
+    var cat = sel.cat || 'handling';
+    var step2 = form.querySelector('.qstep[data-step="2"]');
+    var step3 = form.querySelector('.qstep[data-step="3"]');
+    showBranch(step2, cat);
+    var s3 = (cat === 'ccm') ? 'ccm' : 'route';
+    showBranch(step3, s3);
+    var t = form.querySelector('[data-s3-title]');
+    if (t) t.textContent = (cat === 'ccm') ? 'Locations' : 'From / To';
+    labels[2] = (cat === 'ccm') ? 'Locations' : 'From / To';
+  }
+
+  // Keep the multi-step UX in control: never let Enter trigger a native POST.
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    if (cur === total && stepValid(cur)) submit();
+  });
+
+  form.addEventListener('click', function (e) {
+    var b = e.target.closest('[data-group]');
+    if (!b) return;
+    var group = b.dataset.group;
+    form.querySelectorAll('[data-group="' + group + '"]').forEach(function (el) {
+      el.setAttribute('aria-pressed', el === b ? 'true' : 'false');
+    });
+    sel[group] = b.dataset.value;
+    if (group === 'need') { sel.cat = b.dataset.cat; updateBranches(); }
+    updateNext();
+  });
+
+  function stepValid(n) {
+    if (n === 1) return !!sel.need;
+    if (n === 2) {
+      if (sel.cat === 'handling') return !!sel.count;
+      if (sel.cat === 'ccm') return !!sel.size;
+      if (sel.cat === 'fairs') return !!sel.fairsvc;
+      return false;
+    }
+    if (n === 4) return !!sel.flex;
+    return true;
+  }
+  function updateNext() { next.disabled = !stepValid(cur); }
+
+  function render() {
+    steps.forEach(function (s) { s.classList.toggle('active', +s.dataset.step === cur); });
+    var p = Math.round((cur / total) * 100);
+    bar.style.width = p + '%';
+    pct.textContent = p + '%';
+    stepLabel.textContent = 'Step ' + cur + ' of ' + total + ' · ' + labels[cur - 1];
+    back.disabled = cur === 1;
+    next.innerHTML = (cur === total) ? 'Submit request <span class="ml-1">»</span>' : 'Continue <span class="ml-1">»</span>';
+    updateNext();
+  }
+
+  next.addEventListener('click', function () {
+    if (!stepValid(cur)) return;
+    if (cur === total) { submit(); return; }
+    cur++;
+    render();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+  back.addEventListener('click', function () {
+    if (cur === 1) return;
+    cur--;
+    render();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+
+  // Formspree endpoint — single source of truth (mirrors the form's action attribute).
+  var QUOTE_ENDPOINT = form.getAttribute('action') || 'https://formspree.io/f/maqkgqpr';
+
+  function val(el) { return el ? (el.value || '').trim() : ''; }
+
+  // Assemble every step's inputs into one structured object Formspree can email.
+  function collectFormData() {
+    var step2 = form.querySelector('.qstep[data-step="2"]');
+    var step3 = form.querySelector('.qstep[data-step="3"]');
+    var step4 = form.querySelector('.qstep[data-step="4"]');
+    var step5 = form.querySelector('.qstep[data-step="5"]');
+
+    var hb = step2.querySelector('.qbranch[data-branch="handling"]');
+    var dims = hb ? hb.querySelectorAll('input[type="number"]') : [];
+    var insured = hb ? hb.querySelector('select') : null;
+
+    var fb = step2.querySelector('.qbranch[data-branch="fairs"]');
+    var fairSel = fb ? fb.querySelector('select') : null;
+    var booth = fb ? fb.querySelector('input[type="text"]') : null;
+
+    var rb = step3.querySelector('.qbranch[data-branch="route"]');
+    var routeInputs = rb ? rb.querySelectorAll('input[type="text"]') : [];
+    var routeSelects = rb ? rb.querySelectorAll('select') : [];
+
+    var cb = step3.querySelector('.qbranch[data-branch="ccm"]');
+    var ccmLoc = cb ? cb.querySelector('input[type="text"]') : null;
+
+    var dateEl = step4.querySelector('input[type="date"]');
+    var notesEl = step4.querySelector('textarea');
+    var contacts = step5.querySelectorAll('input');
+
+    return {
+      service: sel.need,
+      category: sel.cat,
+      num_items: sel.count,
+      collection_size: sel.size,
+      collection_state: sel.state,
+      tier_interest: sel.tier,
+      fair_services: sel.fairsvc,
+      sites: sel.sites,
+      flexibility: sel.flex,
+      largest_piece_in: { H: val(dims[0]), W: val(dims[1]), D: val(dims[2]) },
+      insured_value: val(insured),
+      fair: val(fairSel),
+      booth: val(booth),
+      origin: val(routeInputs[0]),
+      origin_access: val(routeSelects[0]),
+      destination: val(routeInputs[1]),
+      destination_access: val(routeSelects[1]),
+      collection_location: val(ccmLoc),
+      estimated_date: val(dateEl),
+      notes: val(notesEl),
+      name: val(contacts[0]),
+      company: val(contacts[1]),
+      email: val(contacts[2]),
+      phone: val(contacts[3]),
+      _subject: 'New WeMove.Art quote request' + (sel.need ? ' — ' + sel.need : '')
+    };
+  }
+
+  function showSuccessState() {
+    form.style.display = 'none';
+    document.getElementById('qProgress').style.display = 'none';
+    document.getElementById('qSuccess').classList.remove('hidden');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  async function submitQuoteForm(formData) {
+    try {
+      var response = await fetch(QUOTE_ENDPOINT, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify(formData)
+      });
+      if (response.ok) {
+        showSuccessState();
+      } else {
+        alert('Something went wrong. Please call +1 305 501 0002 or email Hello@WeMove.Art.');
+      }
+    } catch (err) {
+      alert('Connection issue. Please call +1 305 501 0002 or email Hello@WeMove.Art.');
+    }
+  }
+
+  function submit() {
+    next.disabled = true;
+    submitQuoteForm(collectFormData()).finally(function () { next.disabled = false; });
+  }
+
+  var fileInput = form.querySelector('input[type="file"]');
+  if (fileInput) {
+    fileInput.addEventListener('change', function () {
+      if (fileInput.files && fileInput.files[0]) {
+        var lbl = fileInput.closest('label').querySelector('span');
+        lbl.innerHTML = 'Attached · <span class="font-semibold text-ink">' + fileInput.files[0].name + '</span>';
+      }
+    });
+  }
+
+  updateBranches();
+  render();
+})();
+</script>
+
+<!-- ░░░░░░░░░░░░ TWEAKS ░░░░░░░░░░░░ -->
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script type="text/babel" src="tweaks-panel.jsx"></script>
+<div id="tweaks-root"></div>
+<script type="text/babel">
+  const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
+    "accent": "#2bc9c4",
+    "highlight": "block",
+    "heroScale": 1,
+    "tracking": -0.045,
+    "tint": 10,
+    "grain": true
+  }/*EDITMODE-END*/;
+
+  function applyTweaks(t) {
+    var r = document.documentElement;
+    r.style.setProperty('--accent', t.accent);
+    r.style.setProperty('--htrack', t.tracking + 'em');
+    r.style.setProperty('--tint', (t.tint / 100).toString());
+    r.style.setProperty('--grain', t.grain ? '0.10' : '0');
+    r.style.setProperty('--hero-scale', String(t.heroScale));
+    document.body.classList.toggle('hl-underline', t.highlight === 'underline');
+    document.body.classList.toggle('hl-none', t.highlight === 'none');
+  }
+
+  function TweaksApp() {
+    var hook = useTweaks(TWEAK_DEFAULTS);
+    var t = hook[0], setTweak = hook[1];
+    React.useEffect(function () { applyTweaks(t); }, [t]);
+    return (
+      <TweaksPanel title="Tweaks">
+        <TweakSection label="Color" />
+        <TweakColor label="Accent" value={t.accent}
+          options={['#2bc9c4', '#0E8C84', '#2A6FDB', '#B5762F']}
+          onChange={function (v) { setTweak('accent', v); }} />
+        <TweakSection label="Type" />
+        <TweakRadio label="Highlight" value={t.highlight}
+          options={['block', 'underline', 'none']}
+          onChange={function (v) { setTweak('highlight', v); }} />
+        <TweakSlider label="Hero scale" value={t.heroScale} min={0.8} max={1.2} step={0.02}
+          onChange={function (v) { setTweak('heroScale', v); }} />
+        <TweakSlider label="Heading tracking" value={t.tracking} min={-0.06} max={-0.02} step={0.005} unit="em"
+          onChange={function (v) { setTweak('tracking', v); }} />
+        <TweakSection label="Imagery" />
+        <TweakSlider label="Photo tint" value={t.tint} min={0} max={30} step={1} unit="%"
+          onChange={function (v) { setTweak('tint', v); }} />
+        <TweakToggle label="Film grain" value={t.grain}
+          onChange={function (v) { setTweak('grain', v); }} />
+      </TweaksPanel>
+    );
+  }
+
+  applyTweaks(TWEAK_DEFAULTS);
+  ReactDOM.createRoot(document.getElementById('tweaks-root')).render(<TweaksApp />);
+</script>
+</body>
+</html>
